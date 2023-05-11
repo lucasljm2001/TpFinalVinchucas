@@ -1,5 +1,5 @@
 package aplicacion.vinchucas;
 
-public interface Verificacion {
+public abstract class Verificacion {
 
 }
