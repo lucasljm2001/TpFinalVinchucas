@@ -1,8 +1,8 @@
 package aplicacion.vinchucas;
 
-public class Basico extends Nivel {
+public class ExpertoExterno extends Nivel {
 
-	public Basico(Usuario usuario) {
+	public ExpertoExterno(Usuario usuario) {
 		super(usuario);
 		// TODO Auto-generated constructor stub
 	}

@@ -10,7 +10,7 @@ public class Usuario {
 	
 	public Usuario(String id) {
 		this.id = id;
-		this.nivel = new Basico();
+		this.nivel = new Basico(this);
 	}
 	
 	public Usuario(String id, Nivel nivel) {
