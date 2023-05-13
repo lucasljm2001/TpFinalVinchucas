@@ -1,6 +1,9 @@
-package aplicacion.vinchucas;
+package aplicacion.vinchucas.usuario;
 import java.util.*;
 import java.time.LocalDate;
+import aplicacion.vinchucas.*;
+import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.zona.Ubicacion;
 
 public class Usuario {
 	private List<LocalDate> envios;
@@ -22,9 +25,6 @@ public class Usuario {
 		
 	}
 	
-	public void verificar(Muestra muestra) {
-		
-	}
 	
 	public void enviar(String foto, Ubicacion ubicacion) {
 		
@@ -32,5 +32,9 @@ public class Usuario {
 	
 	public void actualizarNivel() {
 		
+	}
+
+	public Nivel getNivel() {
+		return nivel;
 	}
 }

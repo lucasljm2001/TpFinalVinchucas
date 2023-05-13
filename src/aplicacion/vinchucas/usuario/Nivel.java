@@ -1,10 +1,12 @@
-package aplicacion.vinchucas;
+package aplicacion.vinchucas.usuario;
+
+import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.Verificacion;
 
 public abstract class Nivel {
 	private Usuario usuario;
 	
 	public abstract void opinar(Muestra muestra);
-	public abstract void verificar(Muestra muestra);
 	public abstract void actualizarNivel();
 	
 	
@@ -14,6 +16,10 @@ public abstract class Nivel {
 	
 	public Usuario getUsuario() {
 		return usuario;
+	}
+	
+	public Verificacion nuevaVerificacion() {
+		return new OExperto();
 	}
 	
 	

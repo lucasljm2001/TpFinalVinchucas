@@ -1,4 +1,6 @@
-package aplicacion.vinchucas;
+package aplicacion.vinchucas.usuario;
+
+import aplicacion.vinchucas.muestra.Muestra;
 
 public class Experto extends Nivel {
 
@@ -13,11 +15,6 @@ public class Experto extends Nivel {
 
 	}
 
-	@Override
-	public void verificar(Muestra muestra) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void actualizarNivel() {
