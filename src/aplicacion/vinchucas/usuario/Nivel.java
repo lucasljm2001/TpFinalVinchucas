@@ -1,6 +1,7 @@
 package aplicacion.vinchucas.usuario;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.OExperto;
 import aplicacion.vinchucas.muestra.Verificacion;
 
 public abstract class Nivel {

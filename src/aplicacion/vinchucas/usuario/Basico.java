@@ -1,6 +1,7 @@
 package aplicacion.vinchucas.usuario;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.OBasico;
 import aplicacion.vinchucas.muestra.Verificacion;
 
 public class Basico extends Nivel {

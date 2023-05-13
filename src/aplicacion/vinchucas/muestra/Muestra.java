@@ -27,5 +27,12 @@ public class Muestra {
 			verificacion = usuario.getNivel().nuevaVerificacion();
 		}
 
+
+		public Verificacion getVerificacion() {
+			return verificacion;
+		}
+		
+	
+
 		
 }

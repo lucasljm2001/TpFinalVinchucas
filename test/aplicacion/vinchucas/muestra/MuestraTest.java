@@ -1,5 +1,7 @@
 package aplicacion.vinchucas.muestra;
+import aplicacion.vinchucas.usuario.Basico;
 import aplicacion.vinchucas.usuario.Usuario;
+
 import aplicacion.vinchucas.zona.Ubicacion;
 
 import java.time.LocalDate;
@@ -21,13 +23,17 @@ class MuestraTest {
 	void setUp() throws Exception {
 		usuario = mock(Usuario.class);
 		ubicacion = mock(Ubicacion.class);
+		when(usuario.getNivel()).thenReturn(new Basico(usuario));
+		
 		tipoDeOpinion = TipoDeOpinion.VINCHUCASORDIDA;
 		muestra1 = new Muestra("sordida.jpg", usuario, ubicacion, tipoDeOpinion, LocalDate.now());
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void muestraNuevaNoEsVerificada() {
+		assertFalse(muestra1.getVerificacion().esVerificada());
 	}
+	
+	
 
 }
