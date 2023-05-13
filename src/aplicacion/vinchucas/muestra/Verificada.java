@@ -3,8 +3,8 @@ package aplicacion.vinchucas.muestra;
 public class Verificada extends Verificacion {
 
 	@Override
-	public void opinar(Muestra muestra) {
-		// TODO Auto-generated method stub
+	public void opinar(Muestra muestra, Opinion opinion) {
+		// nadie puede opinar sobre muestras verificadas
 	}
 	
 	@Override

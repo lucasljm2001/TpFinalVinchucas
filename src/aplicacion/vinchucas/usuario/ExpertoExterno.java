@@ -1,6 +1,8 @@
 package aplicacion.vinchucas.usuario;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.Opinion;
+
 
 public class ExpertoExterno extends Nivel {
 
@@ -10,7 +12,7 @@ public class ExpertoExterno extends Nivel {
 	}
 
 	@Override
-	public void opinar(Muestra muestra) {
+	public void opinar(Muestra muestra, Opinion opinion) {
 		// TODO Auto-generated method stub
 
 	}

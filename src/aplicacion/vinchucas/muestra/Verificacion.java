@@ -2,7 +2,7 @@ package aplicacion.vinchucas.muestra;
 
 public abstract class Verificacion {
 	
-	public abstract void opinar(Muestra muestra);
+	public abstract void opinar(Muestra muestra, Opinion opinion);
 	
 
 	public boolean esVerificada() {

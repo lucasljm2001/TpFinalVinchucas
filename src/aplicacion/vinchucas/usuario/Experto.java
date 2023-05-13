@@ -1,25 +1,19 @@
 package aplicacion.vinchucas.usuario;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.Opinion;
 
 public class Experto extends Nivel {
 
 	public Experto(Usuario usuario) {
 		super(usuario);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void opinar(Muestra muestra) {
-		// TODO Auto-generated method stub
-
 	}
 
 
 	@Override
 	public void actualizarNivel() {
-		// TODO Auto-generated method stub
-
+		// if usuario tiene menos de x muestras subidas hace 30 días y menos de x opiniones baja a Basico
+		// TO DO
 	}
 
 }
