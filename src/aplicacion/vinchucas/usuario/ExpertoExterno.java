@@ -11,11 +11,11 @@ public class ExpertoExterno extends Nivel {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void opinar(Muestra muestra, Opinion opinion) {
-		// TODO Auto-generated method stub
+//	@Override
+//	public void opinar(Muestra muestra, Opinion opinion) {
+		// Este metodo no es necesario porque todos los usuarios opinan de la misma manera, REVISARRRR
 
-	}
+//	}
 
 
 	@Override
