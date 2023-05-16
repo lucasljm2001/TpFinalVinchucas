@@ -36,9 +36,9 @@ public class Muestra {
 
 		public void agregarHistorial(Opinion opinion) {
 			if(!this.opino(opinion.getUsuario())){
-			 historial.add(opinion);
-			 opinion.getUsuario().sumarRevision();
-			 
+				historial.add(opinion);
+				opinion.getUsuario().sumarRevision();
+//			 actualizar el resultado actual segun la opinion
 			 //PREGUNTAR!!
 			}
 		}
