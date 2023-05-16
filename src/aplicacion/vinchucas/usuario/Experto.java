@@ -12,8 +12,9 @@ public class Experto extends Nivel {
 
 	@Override
 	public void actualizarNivel() {
-		// if usuario tiene menos de x muestras subidas hace 30 días y menos de x opiniones baja a Basico
-		// TO DO
+		if(!this.tieneCondicionesDeExperto()) {
+			this.actualizarNivelDeUsuario(new Basico(this.getUsuario()));
+		}
 	}
 
 }

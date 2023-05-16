@@ -25,6 +25,10 @@ public class Opinion {
 	public TipoDeOpinion getTipo() {
 		return opinion;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	
 
 }

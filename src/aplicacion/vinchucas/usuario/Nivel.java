@@ -30,6 +30,14 @@ public abstract class Nivel {
 		return true;
 	} 
 	
+	public boolean tieneCondicionesDeExperto() {
+		return usuario.enviosEnLosUltimos30Dias() > 10 && usuario.revisionesEnLosUltimos30Dias() > 20;
+			
+		
+	}
 	
+	public void actualizarNivelDeUsuario(Nivel nivel) {
+		this.usuario.setNivel(nivel);
+	}
 	
 }

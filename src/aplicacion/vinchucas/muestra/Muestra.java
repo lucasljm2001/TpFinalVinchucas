@@ -25,6 +25,7 @@ public class Muestra {
 			this.resultadoActual = resultadoActual;
 			this.fecha = hoy;
 			historial = new ArrayList<Opinion>();
+			this.opinionPorDefecto(usuario,resultadoActual);
 			verificacion = usuario.getNivel().nuevaVerificacion();
 		}
 
@@ -34,7 +35,12 @@ public class Muestra {
 		}
 
 		public void agregarHistorial(Opinion opinion) {
-			historial.add(opinion);
+			if(!this.opino(opinion.getUsuario())){
+			 historial.add(opinion);
+			 opinion.getUsuario().sumarRevision();
+			 
+			 //PREGUNTAR!!
+			}
 		}
 
 		public void setVerificacion(Verificacion verificacion) {
@@ -47,6 +53,14 @@ public class Muestra {
 			
 		}
 		
+		public boolean opino(Usuario us) {
+			return historial.stream().anyMatch(o->o.getUsuario() == us);
+		}
+		
+		private void opinionPorDefecto(Usuario usuario, TipoDeOpinion topinion) {
+			Opinion opinion = new Opinion(topinion, usuario.getNivel(), usuario);
+			historial.add(opinion);
+		}
 		
 	
 
