@@ -16,7 +16,10 @@ public class Usuario {
 	private String id;
 	private SistemaDeVinchuca sistema;
 	
-	
+	public Usuario() {
+		this.envios = new ArrayList<>();
+		this.revisiones = new ArrayList<>();
+	}
 
 	public Usuario(String id) {
 		this.id = id;

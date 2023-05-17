@@ -3,6 +3,7 @@ package aplicacion.vinchucas.muestra;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -28,12 +29,15 @@ class UsuarioTest {
 	List<Usuario> usuarios;
 	Opinion opinion;
 	SistemaDeVinchuca sistema;
+	Usuario pepe;
 	
 	@BeforeEach
 	void setUp() {
 		margo = new Usuario("100");
 		lucas = new Usuario("200");
 		martin = new Usuario("300");
+		pepe = spy(Usuario.class);
+		pepe.setNivel(new Experto(pepe));
 		lucas.esExperto();
 		muestras = new ArrayList<Muestra>();
 				
@@ -72,4 +76,10 @@ class UsuarioTest {
 		assertTrue(lucas.getNivel().esExperto());
 	}
 	
+	
+	@Test 
+	void sumarRevisionAlUsuario() {
+		pepe.actualizarNivel();
+		assertFalse(pepe.getNivel().esExperto());
+	}
 }

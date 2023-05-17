@@ -78,6 +78,10 @@ public class Muestra {
 		public TipoDeOpinion getResultadoActual() {
 			return resultadoActual;
 		}
+
+		public Ubicacion getUbicacion() {
+			return ubicacion;
+		}
 	
 
 		
