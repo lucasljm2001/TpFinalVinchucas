@@ -12,5 +12,13 @@ public class Verificada extends Verificacion {
 		return true;
 	}
 
+	@Override
+	public void actualizarResultado(Muestra muestra) {
+		muestra.setResultadoActual(this.ultimoTipoDeOpinion(muestra));		
+	}
+
+	public TipoDeOpinion ultimoTipoDeOpinion(Muestra muestra) {
+		return muestra.getHistorial().get(muestra.getHistorial().size() -1).getTipo();
+	}
 
 }

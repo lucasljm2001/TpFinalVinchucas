@@ -1,11 +1,14 @@
 package aplicacion.vinchucas.muestra;
 import aplicacion.vinchucas.usuario.Basico;
+import aplicacion.vinchucas.usuario.Experto;
 import aplicacion.vinchucas.usuario.Usuario;
 
 import aplicacion.vinchucas.zona.Ubicacion;
 
 import java.time.LocalDate;
 import java.util.*;
+
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -14,43 +17,108 @@ import org.junit.jupiter.api.Test;
 
 class MuestraTest {
 
-	Muestra muestra1;
-	Usuario usuario;
+	Muestra muestra;
+	Muestra muestra2;
+	Usuario lucas;
+	Usuario margo;
+	Usuario pepin;
+	Usuario nahu;
+	Opinion op1;
+	Opinion op2;
+	Opinion op3;
+	Opinion op4;
+	Opinion op5;
 	Ubicacion ubicacion;
 	TipoDeOpinion tipoDeOpinion;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		usuario = mock(Usuario.class);
+		lucas = mock(Usuario.class);
+		margo = mock(Usuario.class);
+		pepin = mock(Usuario.class);
+		nahu = mock(Usuario.class);
 		ubicacion = mock(Ubicacion.class);
-		when(usuario.getNivel()).thenReturn(new Basico(usuario));
+				
+		op1 = mock(Opinion.class);
+		op2 = mock(Opinion.class);
+		op3 = mock(Opinion.class);
+		op4 = mock(Opinion.class);
+		op5 = mock(Opinion.class);
+		 
+		when(op1.getUsuario()).thenReturn(margo);
+		when(op2.getUsuario()).thenReturn(lucas);
+		when(op3.getUsuario()).thenReturn(pepin);
+		when(op4.getUsuario()).thenReturn(margo);
+		when(op5.getUsuario()).thenReturn(nahu);
+		
+		when(op1.esOpinionDe()).thenReturn(new Experto(margo));
+		when(op2.esOpinionDe()).thenReturn(new Experto(lucas));
+		when(op3.esOpinionDe()).thenReturn(new Basico(pepin));
+		when(op4.esOpinionDe()).thenReturn(new Experto(margo));
+		when(op5.esOpinionDe()).thenReturn(new Basico(nahu));
+		
+
+		when(margo.getNivel()).thenReturn(new Experto(margo));
+		when(lucas.getNivel()).thenReturn(new Experto(lucas));
+		when(pepin.getNivel()).thenReturn(new Basico(pepin));
+		when(nahu.getNivel()).thenReturn(new Basico(nahu));
+		
+		
+		when(op1.getTipo()).thenReturn(TipoDeOpinion.CHINCHEFOLIADA);
+		when(op2.getTipo()).thenReturn(TipoDeOpinion.VINCHUCAGUASAYANA);
+		when(op3.getTipo()).thenReturn(TipoDeOpinion.PHTIACHINCHE);
+		when(op4.getTipo()).thenReturn(TipoDeOpinion.VINCHUCASORDIDA);
+		when(op5.getTipo()).thenReturn(TipoDeOpinion.NINGUNA);
 		
 		tipoDeOpinion = TipoDeOpinion.VINCHUCASORDIDA;
-		muestra1 = new Muestra("sordida.jpg", usuario, ubicacion, tipoDeOpinion, LocalDate.now());
+		muestra = new Muestra("muestra.jpg", lucas, ubicacion, tipoDeOpinion, LocalDate.now());
+		muestra2 = new Muestra("muestra2.jpg", pepin, ubicacion, tipoDeOpinion, LocalDate.now());
 	}
 
 	@Test
 	void muestraNuevaNoEsVerificada() {
-		assertFalse(muestra1.getVerificacion().esVerificada());
+		assertFalse(muestra.getVerificacion().esVerificada());
 	}
-//	
-//	@Test
-//	void usuarioBasicoNoPuedeOpinarLuegoDelExperto() {
-//		lucas.opinar(muestras.get(0), TipoDeOpinion.NINGUNA);
-//		verify(muestras.get(0),never()).opino(margo);
-//		margo.opinar(muestras.get(0), TipoDeOpinion.CHINCHEFOLIADA);
-//		
-//	}
-//
-//	@Test
-//	void dosExpertosOpinanIgual() { 
-//		margo.esExperto();
-//		lucas.opinar(muestras.get(2), TipoDeOpinion.VINCHUCAGUASAYANA);
-//		margo.opinar(muestras.get(2), TipoDeOpinion.VINCHUCAGUASAYANA);
-//		verify(muestras.get(2), never()).opino(martin);
-//		martin.opinar(muestras.get(2), TipoDeOpinion.IMAGENPOCOCLARA);
-//		
-//	}
-//	
+	
+	@Test
+	void usuarioBasicoNoPuedeOpinarLuegoDelExperto() {
+		muestra.getVerificacion().opinar(muestra,op3);
+		assertEquals(1,muestra.getHistorial().size());
+	}
 
+	@Test
+	void dosExpertosOpinanIgualYNadieMasPuedeVotar() { 
+		muestra.getVerificacion().opinar(muestra,op4);
+		assertTrue(muestra.getVerificacion().esVerificada());
+		muestra.actualizarResultado();
+		assertEquals(TipoDeOpinion.VINCHUCASORDIDA, muestra.getResultadoActual());
+		muestra.getVerificacion().opinar(muestra,op3);
+		assertEquals(2,muestra.getHistorial().size());
+	}
+	
+	@Test
+	void dosExpertosNoOpinanIgual() { 
+		muestra.getVerificacion().opinar(muestra,op1);
+		assertEquals(TipoDeOpinion.NODEFINIDO, muestra.getResultadoActual());
+	}
+	
+	@Test
+	void nadiePuedeVotarDosVecesSobreLaMismaMuestra() {
+		muestra.getVerificacion().opinar(muestra,op2);
+		assertEquals(1,muestra.getHistorial().size());
+	}
+	
+	@Test
+	void dosUsuariosBasicoOpinan() {
+		muestra2.getVerificacion().opinar(muestra2,op5);
+		assertEquals(2,muestra2.getHistorial().size());
+	}
+		
+	@Test
+	void dosUsuariosBasicoOpinanYLuegoOpinaUnExpertoLuego() {
+		muestra2.getVerificacion().opinar(muestra2,op5);
+		assertEquals(2,muestra2.getHistorial().size());
+		muestra2.getVerificacion().opinar(muestra2, op1);
+		assertEquals(TipoDeOpinion.CHINCHEFOLIADA, muestra2.getResultadoActual());
+	}
 }

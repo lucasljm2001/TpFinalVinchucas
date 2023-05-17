@@ -23,12 +23,12 @@ public class Muestra {
 			this.usuario = usuario;
 			this.ubicacion = ubicacion;
 			this.resultadoActual = resultadoActual;
-			this.fecha = hoy;
+			this.fecha = hoy; 
 			historial = new ArrayList<Opinion>();
 			this.opinionPorDefecto(usuario,resultadoActual);
 			verificacion = usuario.getNivel().nuevaVerificacion();
-		}
 
+		}
 
 		public Verificacion getVerificacion() {
 			return verificacion;
@@ -38,7 +38,6 @@ public class Muestra {
 			if(!this.opino(opinion.getUsuario())){
 				historial.add(opinion);
 				opinion.getUsuario().sumarRevision();
-//			 actualizar el resultado actual segun la opinion
 			 //PREGUNTAR!!
 			}
 		}
@@ -50,7 +49,6 @@ public class Muestra {
 
 		public boolean dosExpertosOpinaronIgual(Opinion opinion) {
 			return historial.stream().filter(op -> op.esOpinionDe().esExperto()).anyMatch(op-> op.getTipo() == opinion.getTipo());
-			
 		}
 		
 		public boolean opino(Usuario us) {
@@ -62,6 +60,24 @@ public class Muestra {
 			historial.add(opinion);
 		}
 		
+		public void actualizarResultado() {
+			this.verificacion.actualizarResultado(this);
+		}
+
+
+		public List<Opinion> getHistorial() {
+			return historial;
+		}
+
+
+		public void setResultadoActual(TipoDeOpinion opAct) {
+			this.resultadoActual = opAct;
+			
+		}
+		
+		public TipoDeOpinion getResultadoActual() {
+			return resultadoActual;
+		}
 	
 
 		
