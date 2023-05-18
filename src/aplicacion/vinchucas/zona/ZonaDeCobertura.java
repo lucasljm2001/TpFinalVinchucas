@@ -31,7 +31,7 @@ public class ZonaDeCobertura {
 	}
 
 	public boolean esZonaSolapada(ZonaDeCobertura zona) {
-		return  this.epicentro.calcularDistancia(zona.getEpicentro()) < this.radio + zona.getRadio();
+		return this.epicentro.calcularDistancia(zona.getEpicentro()) < this.radio + zona.getRadio();
 	}
 	
 	public boolean ubicacionEstaEnElRango(Ubicacion ubicacion) {

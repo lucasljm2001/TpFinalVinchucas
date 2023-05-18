@@ -36,7 +36,7 @@ public class Ubicacion {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         double distancia = radioTierra * c;
-
+ 
         return distancia;
     }
     
