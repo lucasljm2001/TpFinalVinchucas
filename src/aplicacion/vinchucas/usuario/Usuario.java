@@ -36,7 +36,12 @@ public class Usuario {
 		this.nivel.opinar(muestra, opinion);
 	}
 	
-	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion) {
+	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {
+		sistema.agregarMuestra(new Muestra(foto, this, ubicacion, opinion, LocalDate.now()));
+		this.enviar();
+	}
+	
+	public void enviar() {
 		fechasEnvios.add(LocalDate.now());
 		this.actualizarNivel();
 	}
@@ -75,6 +80,10 @@ public class Usuario {
 
 	public void setFechasEnvios(List<LocalDate> fechasEnvios) {
 		this.fechasEnvios = fechasEnvios;
+	}
+
+	public List<LocalDate> getFechasRevisiones() {
+		return fechasRevisiones;
 	}
 	
 }

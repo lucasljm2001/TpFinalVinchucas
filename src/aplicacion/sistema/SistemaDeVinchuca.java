@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.*;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.TipoDeOpinion;
 import aplicacion.vinchucas.usuario.Usuario;
+import aplicacion.vinchucas.zona.Ubicacion;
 import aplicacion.vinchucas.zona.ZonaDeCobertura;
 
 public class SistemaDeVinchuca {
@@ -27,6 +29,10 @@ public class SistemaDeVinchuca {
 	
 	public List<ZonaDeCobertura> getZonas() {
 		return zonas;
+	}
+	
+	public void usuarioEnviarMuestra(Usuario usuario, String foto, Ubicacion ubicacion, TipoDeOpinion opinion) {
+		usuario.enviar(foto, ubicacion, opinion, this);
 	}
 
 	public void agregarMuestra(Muestra muestra) {

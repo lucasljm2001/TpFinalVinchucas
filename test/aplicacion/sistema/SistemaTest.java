@@ -2,6 +2,7 @@ package aplicacion.sistema;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import aplicacion.vinchucas.muestra.Muestra;
+import aplicacion.vinchucas.muestra.TipoDeOpinion;
 import aplicacion.vinchucas.usuario.Usuario;
 import aplicacion.vinchucas.zona.Ubicacion;
 import aplicacion.vinchucas.zona.ZonaDeCobertura;
@@ -30,6 +32,8 @@ class SistemaTest {
 	Ubicacion ubi2;
 	Ubicacion ubi3;
 	Ubicacion ubi4;
+	
+	Usuario usuario;
 
 
 	@BeforeEach
@@ -41,7 +45,7 @@ class SistemaTest {
 		muestra4 = mock(Muestra.class);
 		muestra5 = mock(Muestra.class);
 		muestra6 = mock(Muestra.class);
-		
+		usuario = mock(Usuario.class);
 		Muestra[] mues = {muestra1,muestra2,muestra3,muestra4,muestra5};
 		List<Muestra> muestras = Arrays.asList(mues);
 		
@@ -91,8 +95,13 @@ class SistemaTest {
 	void muestrasDeLaZona() {
 		Muestra[] muestrasArray = {muestra1,muestra2 };
 		List<Muestra> muestras = Arrays.asList(muestrasArray); 
-		assertEquals(muestras, sistema.muestrasDeZona(bernal));
-		
+		assertEquals(muestras, sistema.muestrasDeZona(bernal));	
+	}
+	
+	@Test
+	void elSistemaHaceEnviarAlUsuario() {
+		sistema.usuarioEnviarMuestra(usuario, "foto.jpg", ubi1, TipoDeOpinion.NINGUNA);
+		verify(usuario).enviar("foto.jpg", ubi1, TipoDeOpinion.NINGUNA, sistema);
 	}
 	
 	

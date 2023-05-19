@@ -121,4 +121,14 @@ class MuestraTest {
 		muestra2.getVerificacion().opinar(muestra2, op1);
 		assertEquals(TipoDeOpinion.CHINCHEFOLIADA, muestra2.getResultadoActual());
 	}
+	
+	@Test
+	void muestraTieneLaUbicacionUbicacion() {
+		assertEquals(ubicacion, muestra.getUbicacion());
+	}
+	
+	@Test
+	void muestraTieneLaFechaDeHot() {
+		assertEquals(LocalDate.now(), muestra.getFecha());
+	}
 }

@@ -31,6 +31,7 @@ class UsuarioTest {
 	Opinion opinion;
 	SistemaDeVinchuca sistema;
 	Usuario pepe;
+
 	
 	@BeforeEach
 	void setUp() {
@@ -41,6 +42,7 @@ class UsuarioTest {
 		pepe.setNivel(new Experto()); 
 		lucas.esExperto();
 		muestras = new ArrayList<Muestra>();
+		sistema = mock(SistemaDeVinchuca.class);
 	
 		for (int i=0; i < 40; i++) {
 			muestras.add(mock(Muestra.class));		
@@ -58,7 +60,7 @@ class UsuarioTest {
 			martin.opinar(muestras.get(i), TipoDeOpinion.IMAGENPOCOCLARA);	
 		}
 		for(int i=22; i < 33 ;i++ ) {
-			martin.enviar("Vinchuca.jpg", ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA);
+			martin.enviar("Vinchuca.jpg", ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA, sistema);
 		}
 		assertTrue(martin.getNivel().esExperto());
 		martin.setFechasEnvios(new ArrayList<LocalDate>());
@@ -76,5 +78,16 @@ class UsuarioTest {
 	void sumarRevisionAlUsuario() {
 		pepe.actualizarNivel();
 		assertFalse(pepe.getNivel().esExperto());
+	}
+	
+	@Test
+	void losUsuariosTienenIdDiferentes() {
+		assertFalse(lucas.getId().equals(margo.getId()));
+	}
+	
+	@Test
+	void seSumaUnaRevisionAlUsuario() {
+		pepe.sumarRevision();
+		assertEquals(1, pepe.getFechasRevisiones().size());
 	}
 }
