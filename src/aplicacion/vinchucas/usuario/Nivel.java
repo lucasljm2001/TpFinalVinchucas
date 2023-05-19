@@ -5,21 +5,12 @@ import aplicacion.vinchucas.muestra.Opinion;
 import aplicacion.vinchucas.muestra.Verificacion;
 
 public abstract class Nivel {
-	private Usuario usuario;
 	
-	public abstract void actualizarNivel();
+	public abstract void actualizarNivel(Usuario usuario);
 	
 	public void opinar(Muestra muestra, Opinion opinion) {
-		muestra.getVerificacion().opinar(muestra, opinion);
-		this.actualizarNivel();
-	}
-	
-	public Nivel(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	public Usuario getUsuario() {
-		return usuario;
+		muestra.opinar(opinion);
+		this.actualizarNivel(opinion.getUsuario());
 	}
 	
 	public Verificacion nuevaVerificacion() {
@@ -30,14 +21,12 @@ public abstract class Nivel {
 		return true;
 	} 
 	
-	public boolean tieneCondicionesDeExperto() {
-		return usuario.enviosEnLosUltimos30Dias() > 10 && usuario.revisionesEnLosUltimos30Dias() > 20;
-			
-		
+	public boolean tieneCondicionesDeExperto(Usuario usuario) {
+		return usuario.enviosEnLosUltimos30Dias() > 10 && usuario.revisionesEnLosUltimos30Dias() > 20;	
 	}
 	
-	public void actualizarNivelDeUsuario(Nivel nivel) {
-		this.usuario.setNivel(nivel);
+	public void actualizarNivelDeUsuario(Usuario usuario,Nivel nivel) {
+		usuario.setNivel(nivel);
 	}
 	
 }

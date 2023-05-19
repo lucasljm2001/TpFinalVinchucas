@@ -16,7 +16,6 @@ public class Muestra {
 		private LocalDate fecha;
 		private Verificacion verificacion;
 		
-		
 		public Muestra(String foto, Usuario usuario, Ubicacion ubicacion, TipoDeOpinion resultadoActual,LocalDate fecha) {
 			LocalDate hoy = LocalDate.now();
 			this.foto = foto;
@@ -27,24 +26,21 @@ public class Muestra {
 			historial = new ArrayList<Opinion>();
 			this.opinionPorDefecto(usuario,resultadoActual);
 			verificacion = usuario.getNivel().nuevaVerificacion();
-
 		}
 
 		public Verificacion getVerificacion() {
 			return verificacion;
 		}
 
-		public void agregarHistorial(Opinion opinion) {
+		void agregarHistorial(Opinion opinion) {
 			if(!this.opino(opinion.getUsuario())){
 				historial.add(opinion);
 				opinion.getUsuario().sumarRevision();
-			 //PREGUNTAR!!
 			}
 		}
 
-		public void setVerificacion(Verificacion verificacion) {
+		void setVerificacion(Verificacion verificacion) {
 			this.verificacion = verificacion;
-			
 		}
 
 		public boolean dosExpertosOpinaronIgual(Opinion opinion) {
@@ -60,19 +56,16 @@ public class Muestra {
 			historial.add(opinion);
 		}
 		
-		public void actualizarResultado() {
+		void actualizarResultado() {
 			this.verificacion.actualizarResultado(this);
 		}
-
 
 		public List<Opinion> getHistorial() {
 			return historial;
 		}
 
-
-		public void setResultadoActual(TipoDeOpinion opAct) {
+		void setResultadoActual(TipoDeOpinion opAct) {
 			this.resultadoActual = opAct;
-			
 		}
 		
 		public TipoDeOpinion getResultadoActual() {
@@ -83,6 +76,13 @@ public class Muestra {
 			return ubicacion;
 		}
 	
+		public void opinar(Opinion opinion) {
+			this.getVerificacion().opinar(this, opinion);
+		}
+
+		public LocalDate getFecha() {
+			return this.fecha;
+		}
 
 		
 }

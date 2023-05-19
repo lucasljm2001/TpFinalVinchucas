@@ -54,14 +54,14 @@ class ZonaTest {
 	
 	@Test
 	void seEnvianValidacionesYNuevasMuestrasAVarela() {
-		varela.notificarOrganizacionesDeNuevaMuestra(muestra);
-		verify(org1).funcionalidadNuevaMuestra(muestra, varela);
-		varela.notificarOrganizacionesDeValidacion(muestra);
-		verify(org1).funcionalidadNuevaMuestra(muestra, varela);
+		varela.notificar(muestra, Funcionalidad.NUEVAMUESTRA);
+		verify(org1).funcionalidad(muestra, varela, Funcionalidad.NUEVAMUESTRA);
+		varela.notificar(muestra, Funcionalidad.NUEVAVALIDACION);
+		verify(org1).funcionalidad(muestra, varela, Funcionalidad.NUEVAMUESTRA);
 		varela.sacar(org1);
 		varela.registrar(org2);
-		varela.notificarOrganizacionesDeValidacion(muestra);
-		verify(org2).funcionalidadValidacion(muestra, varela);
+		varela.notificar(muestra, Funcionalidad.NUEVAVALIDACION);
+		verify(org2).funcionalidad(muestra, varela, Funcionalidad.NUEVAVALIDACION);
 	}
 	
 	@Test

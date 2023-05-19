@@ -7,12 +7,11 @@ public class OBasico extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion) {
-		if ( opinion.esOpinionDe().esExperto()) {
+		if (opinion.esOpinionDe().esExperto()) {
 			muestra.setVerificacion(new OExperto());
 			}
 		muestra.agregarHistorial(opinion);
 		muestra.actualizarResultado();
-		
 	}
 
 	@Override
@@ -31,5 +30,4 @@ public class OBasico extends Verificacion {
 		}
 		muestra.setResultadoActual(opAct);
 	}
-
 }

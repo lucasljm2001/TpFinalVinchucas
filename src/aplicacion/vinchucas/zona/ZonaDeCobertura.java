@@ -8,7 +8,7 @@ import org.mockito.internal.matchers.Or;
 import aplicacion.sistema.SistemaDeVinchuca;
 import aplicacion.vinchucas.muestra.Muestra;
 
-public class ZonaDeCobertura {
+public class ZonaDeCobertura{
 	private double radio;
 	private String nombre;
 	private Ubicacion epicentro;
@@ -23,7 +23,7 @@ public class ZonaDeCobertura {
 	}
 
 	public double getRadio() {
-		return radio;
+		return radio; 
 	}
 
 	public Ubicacion getEpicentro() {
@@ -38,12 +38,8 @@ public class ZonaDeCobertura {
 		return ubicacion.calcularDistancia(epicentro) <= radio;
 	}
 	
-	public void notificarOrganizacionesDeNuevaMuestra(Muestra muestra) {
-		organizaciones.stream().forEach(o->o.funcionalidadNuevaMuestra(muestra, this));
-	}
-	
-	public void notificarOrganizacionesDeValidacion(Muestra muestra) {
-		organizaciones.stream().forEach(o->o.funcionalidadValidacion(muestra, this));
+	public void notificar(Muestra muestra, Funcionalidad funcionalidad) {
+		organizaciones.stream().forEach(o->o.funcionalidad(muestra, this, funcionalidad));
 	}
 
 	public void registrar(Organizacion organizacion) {

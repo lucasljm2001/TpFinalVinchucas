@@ -2,35 +2,34 @@ package aplicacion.vinchucas.zona;
 
 import aplicacion.vinchucas.muestra.Muestra;
 
-public class Organizacion { //OBSERVER
+public class Organizacion implements Observer{
 	private Ubicacion ubicacion;
-	private FuncionalidadExterna nuevaMuestra;
-	private FuncionalidadExterna validacion;
+	private FuncionalidadExterna funcionalidadDeNuevaMuestra;
+	private FuncionalidadExterna funcionalidadDeValidacion;
 	private TipoDeOrganizacion tipo;
 	private int cantidadDeEmpleados;
 	
 	public Organizacion(Ubicacion ubicacion, FuncionalidadExterna nuevaMuestra, FuncionalidadExterna validacion,TipoDeOrganizacion tipo, int cantidadDeEmpleados) {
-		
 		this.ubicacion = ubicacion;
-		this.nuevaMuestra = nuevaMuestra;
-		this.validacion = validacion;
+		this.funcionalidadDeNuevaMuestra = nuevaMuestra;
+		this.funcionalidadDeValidacion = validacion;
 		this.tipo = tipo;
 		this.cantidadDeEmpleados = cantidadDeEmpleados;
 	}
 
-	public void registrarseEnUnaZona(ZonaDeCobertura zona) {
+	public void registrarse(ZonaDeCobertura zona) {
 		zona.registrar(this);
 	}
-
-	public void funcionalidadNuevaMuestra(Muestra muestra, ZonaDeCobertura zonaDeCobertura) {
-		 nuevaMuestra.nuevoEvento(muestra, this, zonaDeCobertura);
-	}
-
-	public void funcionalidadValidacion(Muestra muestra, ZonaDeCobertura zonaDeCobertura) {
-		 validacion.nuevoEvento(muestra, this, zonaDeCobertura);
-	}
 	
-	public void eliminarRegistros(ZonaDeCobertura zona) {
+	public void eliminarse(ZonaDeCobertura zona) {
 		zona.sacar(this);
+	}
+
+	public void funcionalidad(Muestra muestra, ZonaDeCobertura zonaDeCobertura, Funcionalidad funcionalidad) {
+		if (funcionalidad == Funcionalidad.NUEVAMUESTRA) {
+			funcionalidadDeNuevaMuestra.nuevoEvento(muestra, this, zonaDeCobertura);
+		} else {
+			funcionalidadDeValidacion.nuevoEvento(muestra, this, zonaDeCobertura);
+		}
 	}
 }

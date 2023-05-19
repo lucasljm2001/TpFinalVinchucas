@@ -5,16 +5,10 @@ import aplicacion.vinchucas.muestra.Opinion;
 
 public class Experto extends Nivel {
 
-	public Experto(Usuario usuario) {
-		super(usuario);
-	}
-
-
 	@Override
-	public void actualizarNivel() {
-		if(!this.tieneCondicionesDeExperto()) {
-			this.actualizarNivelDeUsuario(new Basico(this.getUsuario()));
+	public void actualizarNivel(Usuario usuario) {
+		if(!this.tieneCondicionesDeExperto(usuario)) {
+			this.actualizarNivelDeUsuario(usuario,new Basico());
 		}
 	}
-
 }

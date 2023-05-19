@@ -51,17 +51,17 @@ class MuestraTest {
 		when(op4.getUsuario()).thenReturn(margo);
 		when(op5.getUsuario()).thenReturn(nahu);
 		
-		when(op1.esOpinionDe()).thenReturn(new Experto(margo));
-		when(op2.esOpinionDe()).thenReturn(new Experto(lucas));
-		when(op3.esOpinionDe()).thenReturn(new Basico(pepin));
-		when(op4.esOpinionDe()).thenReturn(new Experto(margo));
-		when(op5.esOpinionDe()).thenReturn(new Basico(nahu));
+		when(op1.esOpinionDe()).thenReturn(new Experto());
+		when(op2.esOpinionDe()).thenReturn(new Experto());
+		when(op3.esOpinionDe()).thenReturn(new Basico());
+		when(op4.esOpinionDe()).thenReturn(new Experto());
+		when(op5.esOpinionDe()).thenReturn(new Basico());
 		
 
-		when(margo.getNivel()).thenReturn(new Experto(margo));
-		when(lucas.getNivel()).thenReturn(new Experto(lucas));
-		when(pepin.getNivel()).thenReturn(new Basico(pepin));
-		when(nahu.getNivel()).thenReturn(new Basico(nahu));
+		when(margo.getNivel()).thenReturn(new Experto());
+		when(lucas.getNivel()).thenReturn(new Experto());
+		when(pepin.getNivel()).thenReturn(new Basico());
+		when(nahu.getNivel()).thenReturn(new Basico());
 		
 		
 		when(op1.getTipo()).thenReturn(TipoDeOpinion.CHINCHEFOLIADA);

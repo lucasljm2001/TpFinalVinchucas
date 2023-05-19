@@ -36,21 +36,21 @@ class OrganizacionTest {
 
 	@Test
 	void laOrganizacionSeRegistraEnLaZona() {
-		org.registrarseEnUnaZona(zona);
+		org.registrarse(zona);
 		verify(zona).registrar(org);
 	}
 	
 	@Test
 	void laOrganizacionEnviaFuncionalidadesExternas() {
-		org.funcionalidadNuevaMuestra(muestra, zona);
+		org.funcionalidad(muestra, zona, Funcionalidad.NUEVAMUESTRA);
 		verify(nuevaMuestra).nuevoEvento(muestra, org, zona);
-		org.funcionalidadValidacion(muestra, zona);
+		org.funcionalidad(muestra, zona, Funcionalidad.NUEVAVALIDACION);
 		verify(validacion).nuevoEvento(muestra, org, zona);
 	}
 	
 	@Test
 	void laOrganizacionSeEliminaDeLosRegistros() {
-		org.eliminarRegistros(zona);
+		org.eliminarse(zona);
 		verify(zona).sacar(org);
 	}
 

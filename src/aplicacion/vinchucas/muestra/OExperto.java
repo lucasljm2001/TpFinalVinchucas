@@ -25,6 +25,5 @@ public class OExperto extends Verificacion {
 			muestra.setResultadoActual(opiniones.get(0).getTipo());
 		}
 	}
-	
 
 }

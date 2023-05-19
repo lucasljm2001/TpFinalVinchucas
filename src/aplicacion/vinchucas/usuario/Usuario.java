@@ -10,48 +10,47 @@ import aplicacion.vinchucas.zona.Ubicacion;
 
 
 public class Usuario {
-	private List<LocalDate> envios;
-	private List <LocalDate> revisiones;
+	private List<LocalDate> fechasEnvios;
+	private List <LocalDate> fechasRevisiones;
 	private Nivel nivel;
 	private String id;
 	private SistemaDeVinchuca sistema;
 	
 	public Usuario() {
-		this.envios = new ArrayList<>();
-		this.revisiones = new ArrayList<>();
+		this.inicializarFechas();
 	}
 
 	public Usuario(String id) {
 		this.id = id;
-		this.nivel = new Basico(this);
-		this.envios = new ArrayList<>();
-		this.revisiones = new ArrayList<>();
+		this.nivel = new Basico(); 
+		this.inicializarFechas();
 	}
-	
 		
 	public Usuario(String id, SistemaDeVinchuca sistema) {
 		this(id);
 		this.sistema = sistema;
 	}
 
-	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
-		revisiones.add(LocalDate.now());
-		Opinion opinion = new Opinion(tipoOpinion, this.nivel, this);
-		this.nivel.opinar(muestra, opinion);
-		
-		
+	private void inicializarFechas() {
+		this.fechasEnvios = new ArrayList<>();
+		this.fechasRevisiones = new ArrayList<>();
 	}
 	
+	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
+		fechasRevisiones.add(LocalDate.now());
+		Opinion opinion = new Opinion(tipoOpinion, this.nivel, this);
+		this.nivel.opinar(muestra, opinion);
+	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion) {
 		Muestra muestra = new Muestra(foto, this, ubicacion, opinion, LocalDate.now());
-//		sistema.agregarMuestra(muestra);
-		envios.add(LocalDate.now());
+		sistema.agregarMuestra(muestra);
+		fechasEnvios.add(LocalDate.now());
 		this.actualizarNivel();
 	}
 	
 	public void actualizarNivel() {
-		this.nivel.actualizarNivel();
+		this.nivel.actualizarNivel(this);
 	}
 
 	public Nivel getNivel() {
@@ -59,8 +58,7 @@ public class Usuario {
 	}
 
 	public void esExperto() {
-		this.nivel = new ExpertoExterno(this);
-		
+		this.nivel = new ExpertoExterno();
 	}
 	
 	public String getId() {
@@ -68,8 +66,7 @@ public class Usuario {
 	}
 
 	public void sumarRevision() {
-		revisiones.add(LocalDate.now());
-		
+		fechasRevisiones.add(LocalDate.now());
 	}
 	
 	public void setNivel(Nivel nivel) {
@@ -77,10 +74,15 @@ public class Usuario {
 	}
 
 	public int enviosEnLosUltimos30Dias() {
-		return envios.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
+		return fechasEnvios.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
 	}
 	
 	public int revisionesEnLosUltimos30Dias() {
-		return revisiones.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
+		return fechasRevisiones.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
 	}
+
+	public void setFechasEnvios(List<LocalDate> fechasEnvios) {
+		this.fechasEnvios = fechasEnvios;
+	}
+	
 }

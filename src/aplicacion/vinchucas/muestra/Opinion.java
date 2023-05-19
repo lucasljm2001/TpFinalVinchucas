@@ -10,7 +10,6 @@ public class Opinion {
 	private Nivel nivel;
 	private Usuario usuario;
 
-
 	public Opinion(TipoDeOpinion opinion, Nivel nivel, Usuario usuario) {
 		this.fecha = LocalDate.now();
 		this.opinion = opinion;
@@ -30,5 +29,4 @@ public class Opinion {
 		return usuario;
 	}
 	
-
 }
