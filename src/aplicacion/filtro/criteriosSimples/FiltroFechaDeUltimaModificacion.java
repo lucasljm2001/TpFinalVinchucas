@@ -1,8 +1,9 @@
-package aplicacion.filtro;
+package aplicacion.filtro.criteriosSimples;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import aplicacion.filtro.CriterioSimple;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public class FiltroFechaDeUltimaModificacion implements CriterioSimple{
@@ -18,8 +19,7 @@ public class FiltroFechaDeUltimaModificacion implements CriterioSimple{
 
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
-		// TODO Auto-generated method stub
-		return null;
+		return criterio.filtrar(muestras, fecha);
 	}
 
 }

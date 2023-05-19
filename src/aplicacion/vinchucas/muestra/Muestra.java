@@ -14,7 +14,7 @@ public class Muestra {
 		private TipoDeOpinion resultadoActual;
 		private List<Opinion> historial;
 		private LocalDate fecha;
-		private Verificacion verificacion;
+		private Verificacion verificacion; 
 		
 		public Muestra(String foto, Usuario usuario, Ubicacion ubicacion, TipoDeOpinion resultadoActual,LocalDate fecha) {
 			LocalDate hoy = LocalDate.now();
@@ -84,5 +84,8 @@ public class Muestra {
 			return this.fecha;
 		}
 
+		public LocalDate ultimaModificacion() {
+			return this.getHistorial().get(this.getHistorial().size()-1).getFecha();
+		}
 		
 }

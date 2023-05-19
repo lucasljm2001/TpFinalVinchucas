@@ -22,7 +22,7 @@ public class OBasico extends Verificacion {
 		for ( TipoDeOpinion tipo : tipos) {
 			int actual = tipos.stream().filter(t -> t == tipo).toList().size();
 			if (actual > max) {
-				opAct = tipo;
+				opAct = tipo; 
 				max = actual;
 			} else if (actual == max){
 				opAct = TipoDeOpinion.NODEFINIDO;

@@ -1,4 +1,4 @@
-package aplicacion.filtro;
+package aplicacion.filtro.criteriosSimples;
 
 import java.time.LocalDate;
 import java.util.List;

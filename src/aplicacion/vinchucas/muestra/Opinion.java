@@ -28,5 +28,9 @@ public class Opinion {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
 	
 }

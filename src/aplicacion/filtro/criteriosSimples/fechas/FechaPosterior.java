@@ -1,16 +1,17 @@
-package aplicacion.filtro;
+package aplicacion.filtro.criteriosSimples.fechas;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import aplicacion.filtro.criteriosSimples.CriterioFecha;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public class FechaPosterior implements CriterioFecha {
 
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras, LocalDate fecha) {
-		// TODO Auto-generated method stub
-		return null;
+		return muestras.stream()
+				.filter(m -> m.ultimaModificacion().isAfter(fecha)).toList();
 	}
 
 }

@@ -1,9 +1,10 @@
-package aplicacion.filtro;
+package aplicacion.filtro.criteriosCompuestos;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import aplicacion.filtro.CriterioCompuesto;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public class FiltroOr extends CriterioCompuesto {
