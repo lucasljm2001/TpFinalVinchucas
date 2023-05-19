@@ -63,7 +63,7 @@ class UsuarioTest {
 			martin.enviar("Vinchuca.jpg", ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA, sistema);
 		}
 		assertTrue(martin.getNivel().esExperto());
-		martin.setFechasEnvios(new ArrayList<LocalDate>());
+		martin.setFechasEnvios(new ArrayList<LocalDate>()); 
 		martin.actualizarNivel();
 		assertFalse(martin.getNivel().esExperto());
 	}

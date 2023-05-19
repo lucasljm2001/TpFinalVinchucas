@@ -1,6 +1,7 @@
 package aplicacion.filtro.criteriosCompuestos;
 
 import java.util.ArrayList;
+import java.util.*;
 import java.util.HashSet;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class FiltroOr extends CriterioCompuesto {
 		for (Filtro filtro : this.getFiltros()) {
 		resultado.addAll(filtro.filtrar(muestras));
 		}
-		HashSet<Muestra> listaMuestras = new HashSet<Muestra>(resultado);
+		HashSet<Muestra> listaMuestras = new LinkedHashSet<Muestra>(resultado);
 		return new ArrayList<>(listaMuestras);
 		
 	}

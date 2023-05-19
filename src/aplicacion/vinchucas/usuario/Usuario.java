@@ -13,7 +13,7 @@ public class Usuario {
 	private List<LocalDate> fechasEnvios;
 	private List <LocalDate> fechasRevisiones;
 	private Nivel nivel;
-	private String id;    //HACE FALTA QUE CONOZCA AL SISTEMA?
+	private String id;
 	
 	public Usuario() {
 		this.inicializarFechas();
@@ -37,7 +37,7 @@ public class Usuario {
 	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {
-		sistema.agregarMuestra(new Muestra(foto, this, ubicacion, opinion, LocalDate.now()));
+		sistema.agregarMuestra(new Muestra(foto, this, ubicacion, opinion));
 		this.enviar();
 	}
 	

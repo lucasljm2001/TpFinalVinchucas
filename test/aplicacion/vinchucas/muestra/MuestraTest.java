@@ -42,7 +42,7 @@ class MuestraTest {
 		op1 = mock(Opinion.class);
 		op2 = mock(Opinion.class);
 		op3 = mock(Opinion.class);
-		op4 = mock(Opinion.class);
+		op4 = mock(Opinion.class); 
 		op5 = mock(Opinion.class);
 		 
 		when(op1.getUsuario()).thenReturn(margo);
@@ -130,5 +130,10 @@ class MuestraTest {
 	@Test
 	void muestraTieneLaFechaDeHot() {
 		assertEquals(LocalDate.now(), muestra.getFecha());
+	}
+	
+	@Test
+	void ultimaModifDeLaMuestra() {
+		assertEquals(LocalDate.now(), muestra.ultimaModificacion());
 	}
 }

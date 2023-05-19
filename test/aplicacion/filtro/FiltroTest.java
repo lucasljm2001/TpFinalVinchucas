@@ -41,6 +41,7 @@ class FiltroTest {
 	Filtro filtroModificacionAnterior;
 	Filtro filtroVerificacion;
 	Filtro filtroTipo;
+	Filtro filtroTipoNuevo;
 	
 	CriterioFecha criterioIgual;
 	CriterioFecha criterioPosterior;
@@ -93,6 +94,7 @@ class FiltroTest {
 		when(usuario.getNivel()).thenReturn(new Experto());
 		when(experto.getNivel()).thenReturn(new Experto());
 		
+		filtroTipoNuevo = new FiltroTipoDeInsecto(TipoDeOpinion.VINCHUCAINFESTANS);
 		filtroTipo = new FiltroTipoDeInsecto(TipoDeOpinion.PHTIACHINCHE);
 		filtroVerificacion = new FiltroNivelVerificacion(new Verificada());
 		filtroCreacion = new FiltroFechaDeCreacion(LocalDate.now());
@@ -155,10 +157,36 @@ class FiltroTest {
 	
 	@Test
 	void filtroOr() {
-		Muestra[] muestrario = {muestra2, muestra1, muestra3};
+		Muestra[] muestrario = {muestra1, muestra2, muestra3};
 		List<Muestra> resultado = Arrays.asList(muestrario);
 		assertEquals(resultado, filtroOr.filtrar(muestras));
 	}
 
+	@Test
+	void filtroOrTriple() {
+		filtroOr.agregarFiltro(filtroModificacionAnterior);
+		Muestra[] muestrario = {muestra1, muestra2, muestra3, muestra4};
+		List<Muestra> resultado = Arrays.asList(muestrario);
+		assertEquals(resultado, filtroOr.filtrar(muestras));
+	}
+
+	@Test
+	void filtroAndTriple() {
+		CriterioCompuesto filtroAnd2 = new FiltroAnd();
+		filtroAnd2.agregarFiltro(filtroModificacionAnterior);
+		filtroAnd2.agregarFiltro(filtroTipoNuevo);
+		filtroAnd2.agregarFiltro(filtroCreacion);
+		Muestra[] muestrario = {};
+		List<Muestra> resultado = Arrays.asList(muestrario);
+		assertEquals(resultado, filtroAnd2.filtrar(muestras));
+	}
+
+	@Test
+	void eliminoUnFiltro() {
+		filtroOr.eliminarFiltro(filtroVerificacion);
+		Muestra[] muestrario = {muestra2};
+		List<Muestra> resultado = Arrays.asList(muestrario);
+		assertEquals(resultado, filtroAnd.filtrar(muestras));
+	}
 
 }
