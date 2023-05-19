@@ -16,4 +16,8 @@ public abstract class CriterioCompuesto implements Filtro{
 	public void eliminarFiltro(Filtro filtro) {
 		filtros.remove(filtro);
 	}
+
+	public List<Filtro> getFiltros() {
+		return filtros;
+	}
 }
