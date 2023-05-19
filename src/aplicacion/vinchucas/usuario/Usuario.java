@@ -13,8 +13,7 @@ public class Usuario {
 	private List<LocalDate> fechasEnvios;
 	private List <LocalDate> fechasRevisiones;
 	private Nivel nivel;
-	private String id;
-	private SistemaDeVinchuca sistema;
+	private String id;    //HACE FALTA QUE CONOZCA AL SISTEMA?
 	
 	public Usuario() {
 		this.inicializarFechas();
@@ -26,11 +25,6 @@ public class Usuario {
 		this.inicializarFechas();
 	}
 		
-	public Usuario(String id, SistemaDeVinchuca sistema) {
-		this(id);
-		this.sistema = sistema;
-	}
-
 	private void inicializarFechas() {
 		this.fechasEnvios = new ArrayList<>();
 		this.fechasRevisiones = new ArrayList<>();
@@ -43,8 +37,6 @@ public class Usuario {
 	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion) {
-		Muestra muestra = new Muestra(foto, this, ubicacion, opinion, LocalDate.now());
-		sistema.agregarMuestra(muestra);
 		fechasEnvios.add(LocalDate.now());
 		this.actualizarNivel();
 	}

@@ -31,14 +31,12 @@ class UsuarioTest {
 	Opinion opinion;
 	SistemaDeVinchuca sistema;
 	Usuario pepe;
-	SistemaDeVinchuca sist; 
 	
 	@BeforeEach
 	void setUp() {
-		sist = mock(SistemaDeVinchuca.class);
-		margo = new Usuario("100", sist);
-		lucas = new Usuario("200", sist);
-		martin = new Usuario("300", sist);
+		margo = new Usuario("100");
+		lucas = new Usuario("200");
+		martin = new Usuario("300"); 
 		pepe = spy(Usuario.class);
 		pepe.setNivel(new Experto()); 
 		lucas.esExperto();

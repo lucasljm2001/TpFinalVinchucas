@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class UbicacionTest {
 	private Ubicacion u1;
-	private Ubicacion u2;
+	private Ubicacion u2; 
 	private Ubicacion u3;
 	private Ubicacion u4;
 	private List<Ubicacion> ubicaciones;

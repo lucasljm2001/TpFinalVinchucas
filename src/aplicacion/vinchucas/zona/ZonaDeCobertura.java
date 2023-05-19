@@ -23,7 +23,7 @@ public class ZonaDeCobertura{
 	}
 
 	public double getRadio() {
-		return radio; 
+		return radio;  
 	}
 
 	public Ubicacion getEpicentro() {

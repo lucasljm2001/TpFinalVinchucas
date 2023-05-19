@@ -9,18 +9,15 @@ import aplicacion.vinchucas.zona.ZonaDeCobertura;
 
 public class SistemaDeVinchuca {
 	private List<ZonaDeCobertura> zonas;
-	private List<Usuario> usuarios;
 	private List<Muestra> muestras;
 
 	public SistemaDeVinchuca() {
 		this.zonas = new ArrayList<ZonaDeCobertura>();
-		this.usuarios = new ArrayList<Usuario>();
 		this.muestras= new ArrayList<Muestra>();
 	}
 
-	public SistemaDeVinchuca(List<ZonaDeCobertura> zonas, List<Usuario> usuarios, List<Muestra> muestras) {
+	public SistemaDeVinchuca(List<ZonaDeCobertura> zonas, List<Muestra> muestras) {
 		this.zonas = zonas;
-		this.usuarios = usuarios;
 		this.muestras = muestras;
 	}
 
@@ -34,17 +31,17 @@ public class SistemaDeVinchuca {
 
 	public void agregarMuestra(Muestra muestra) {
 		this.muestras.add(muestra);
-	}
+	} 
 	
 	public List<Muestra> todasLasMuestrasAMenosDe(Muestra muestra, double distancia){
 		return this.getMuestras().stream()
 				.filter(m -> m.getUbicacion()
-						.calcularDistancia(muestra.getUbicacion()) < distancia).toList();
+						.calcularDistancia(muestra.getUbicacion()) < distancia && m != muestra).toList();
 	}
 	
 	public List<ZonaDeCobertura> zonasSolapadas (ZonaDeCobertura zona){
 		return this.getZonas().stream()
-				.filter(z-> z.esZonaSolapada(zona)).toList();
+				.filter(z-> z.esZonaSolapada(zona) && z != zona).toList(); 
 	}
 	
 	public List<Muestra> muestrasDeZona(ZonaDeCobertura zona){
