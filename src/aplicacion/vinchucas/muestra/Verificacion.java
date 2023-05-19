@@ -10,4 +10,5 @@ public abstract class Verificacion {
 
 	public abstract void actualizarResultado(Muestra muestra);
 
+
 }

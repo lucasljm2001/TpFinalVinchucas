@@ -71,8 +71,8 @@ class MuestraTest {
 		when(op5.getTipo()).thenReturn(TipoDeOpinion.NINGUNA);
 		
 		tipoDeOpinion = TipoDeOpinion.VINCHUCASORDIDA;
-		muestra = new Muestra("muestra.jpg", lucas, ubicacion, tipoDeOpinion, LocalDate.now());
-		muestra2 = new Muestra("muestra2.jpg", pepin, ubicacion, tipoDeOpinion, LocalDate.now());
+		muestra = new Muestra("muestra.jpg", lucas, ubicacion, tipoDeOpinion);
+		muestra2 = new Muestra("muestra2.jpg", pepin, ubicacion, tipoDeOpinion);
 	}
 
 	@Test

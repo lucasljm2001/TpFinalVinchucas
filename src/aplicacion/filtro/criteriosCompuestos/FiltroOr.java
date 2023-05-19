@@ -5,17 +5,22 @@ import java.util.HashSet;
 import java.util.List;
 
 import aplicacion.filtro.CriterioCompuesto;
+import aplicacion.filtro.Filtro;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public class FiltroOr extends CriterioCompuesto {
 
-
+	public FiltroOr() {
+		super();
+	}
+	
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
 		List<Muestra> resultado = new ArrayList<Muestra>();
 		
-		resultado.addAll(this.getFiltros().get(0).filtrar(muestras));
-		resultado.addAll(this.getFiltros().get(1).filtrar(muestras));
+		for (Filtro filtro : this.getFiltros()) {
+		resultado.addAll(filtro.filtrar(muestras));
+		}
 		HashSet<Muestra> listaMuestras = new HashSet<Muestra>(resultado);
 		return new ArrayList<>(listaMuestras);
 		

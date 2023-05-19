@@ -14,9 +14,9 @@ public class Muestra {
 		private TipoDeOpinion resultadoActual;
 		private List<Opinion> historial;
 		private LocalDate fecha;
-		private Verificacion verificacion; 
+		private Verificacion verificacion;
 		
-		public Muestra(String foto, Usuario usuario, Ubicacion ubicacion, TipoDeOpinion resultadoActual,LocalDate fecha) {
+		public Muestra(String foto, Usuario usuario, Ubicacion ubicacion, TipoDeOpinion resultadoActual) {
 			LocalDate hoy = LocalDate.now();
 			this.foto = foto;
 			this.usuario = usuario;
@@ -27,7 +27,7 @@ public class Muestra {
 			this.opinionPorDefecto(usuario,resultadoActual);
 			verificacion = usuario.getNivel().nuevaVerificacion();
 		}
-
+		
 		public Verificacion getVerificacion() {
 			return verificacion;
 		}
@@ -68,7 +68,7 @@ public class Muestra {
 			this.resultadoActual = opAct;
 		}
 		
-		public TipoDeOpinion getResultadoActual() {
+		public TipoDeOpinion getResultadoActual() { 
 			return resultadoActual;
 		}
 

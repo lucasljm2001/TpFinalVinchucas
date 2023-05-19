@@ -11,7 +11,7 @@ public class FechaIgual implements CriterioFecha {
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras, LocalDate fecha) {
 		return muestras.stream()
-				.filter(m -> m.ultimaModificacion() == fecha).toList();
+				.filter(m -> m.ultimaModificacion().equals(fecha)).toList();
 	}
 
 }
