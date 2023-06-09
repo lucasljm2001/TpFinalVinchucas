@@ -27,7 +27,7 @@ public class OBasico extends Verificacion {
 			} else if (actual == max){
 				opAct = TipoDeOpinion.NODEFINIDO;
 			}
-		}
+		} 
 		muestra.setResultadoActual(opAct);
 	}
 }

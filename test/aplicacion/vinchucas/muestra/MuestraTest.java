@@ -115,7 +115,7 @@ class MuestraTest {
 	}
 		
 	@Test
-	void dosUsuariosBasicoOpinanYLuegoOpinaUnExpertoLuego() {
+	void dosUsuariosBasicoOpinanYLuegoOpinaUnExperto() {
 		muestra2.getVerificacion().opinar(muestra2,op5);
 		assertEquals(2,muestra2.getHistorial().size());
 		muestra2.getVerificacion().opinar(muestra2, op1);

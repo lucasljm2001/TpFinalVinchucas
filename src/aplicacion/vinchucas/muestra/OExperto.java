@@ -1,6 +1,6 @@
 package aplicacion.vinchucas.muestra;
 
-import java.util.List;
+import java.util.*;
 
 public class OExperto extends Verificacion {
 
@@ -18,11 +18,21 @@ public class OExperto extends Verificacion {
 	@Override
 	public void actualizarResultado(Muestra muestra) {
 		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).toList();
-		int tipos = opiniones.size();
-		if (tipos > 1) {
-			muestra.setResultadoActual(TipoDeOpinion.NODEFINIDO);
-		} else {
+		Map<Integer, TipoDeOpinion> cantTipo = new HashMap<Integer, TipoDeOpinion>();
+		// Mover for a un metodo aparte
+		for (Opinion opinion : opiniones) {
+			Integer actual = opiniones.stream().filter(o -> o.getTipo()==opinion.getTipo()).toList().size();
+			cantTipo.put(actual, opinion.getTipo());
+		}
+		boolean algunaOpinionConDos = cantTipo.keySet().stream().anyMatch(i -> i>1);
+		if(opiniones.size()==1) {
 			muestra.setResultadoActual(opiniones.get(0).getTipo());
+		}
+		else if (!algunaOpinionConDos) {
+			muestra.setResultadoActual(TipoDeOpinion.NODEFINIDO);
+		}
+		else {
+			muestra.setResultadoActual(cantTipo.get(2));
 		}
 	}
 
