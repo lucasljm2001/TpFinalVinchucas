@@ -35,12 +35,6 @@ class OrganizacionTest {
 	} 
 
 	@Test
-	void laOrganizacionSeRegistraEnLaZona() {
-		org.registrarse(zona);
-		verify(zona).registrar(org);
-	}
-	
-	@Test
 	void laOrganizacionEnviaFuncionalidadesExternas() {
 		org.funcionalidad(muestra, zona, Funcionalidad.NUEVAMUESTRA);
 		verify(nuevaMuestra).nuevoEvento(muestra, org, zona);
@@ -48,10 +42,4 @@ class OrganizacionTest {
 		verify(validacion).nuevoEvento(muestra, org, zona);
 	}
 	
-	@Test
-	void laOrganizacionSeEliminaDeLosRegistros() {
-		org.eliminarse(zona);
-		verify(zona).sacar(org);
-	}
-
 }

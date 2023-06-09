@@ -15,7 +15,11 @@ public class FiltroFechaDeCreacion implements CriterioSimple {
 
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
-		return muestras.stream().filter(m -> m.getFecha().equals(fecha)).toList();
+		return muestras.stream().filter(m -> m.getFecha().equals(this.getFecha())).toList();
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
 	}
 
 }

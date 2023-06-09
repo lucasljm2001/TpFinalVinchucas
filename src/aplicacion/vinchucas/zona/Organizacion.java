@@ -17,19 +17,22 @@ public class Organizacion implements Observer{
 		this.cantidadDeEmpleados = cantidadDeEmpleados;
 	}
 
-	public void registrarse(ZonaDeCobertura zona) {
-		zona.registrar(this);
-	}
-	
-	public void eliminarse(ZonaDeCobertura zona) {
-		zona.sacar(this);
-	}
 
 	public void funcionalidad(Muestra muestra, ZonaDeCobertura zonaDeCobertura, Funcionalidad funcionalidad) {
 		if (funcionalidad == Funcionalidad.NUEVAMUESTRA) {
-			funcionalidadDeNuevaMuestra.nuevoEvento(muestra, this, zonaDeCobertura);
+			this.getFuncionalidadDeNuevaMuestra().nuevoEvento(muestra, this, zonaDeCobertura);
 		} else {
-			funcionalidadDeValidacion.nuevoEvento(muestra, this, zonaDeCobertura);
+			this.getFuncionalidadDeValidacion().nuevoEvento(muestra, this, zonaDeCobertura);
 		}
+	}
+
+
+	public FuncionalidadExterna getFuncionalidadDeNuevaMuestra() {
+		return funcionalidadDeNuevaMuestra;
+	}
+
+
+	public FuncionalidadExterna getFuncionalidadDeValidacion() {
+		return funcionalidadDeValidacion;
 	}
 }

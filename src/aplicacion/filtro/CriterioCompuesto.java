@@ -15,11 +15,11 @@ public abstract class CriterioCompuesto implements Filtro{
 	public abstract List<Muestra> filtrar(List<Muestra>muestras);
 	
 	public void agregarFiltro(Filtro filtro) {
-		filtros.add(filtro);
+		this.getFiltros().add(filtro);
 	}
 	
 	public void eliminarFiltro(Filtro filtro) {
-		filtros.remove(filtro);
+		this.getFiltros().remove(filtro);
 	}
 
 	public List<Filtro> getFiltros() {

@@ -12,14 +12,14 @@ public class ZonaDeCobertura{
 	private double radio;
 	private String nombre;
 	private Ubicacion epicentro;
-	private List<Organizacion> organizaciones;
+	private List<Observer> organizaciones;
 	
 	
 	public ZonaDeCobertura(double radio, String nombre, Ubicacion epicentro) {
 		this.radio = radio;
 		this.nombre = nombre;
 		this.epicentro = epicentro;
-		organizaciones = new ArrayList<Organizacion>();
+		organizaciones = new ArrayList<Observer>();
 	}
 
 	public double getRadio() {
@@ -31,23 +31,27 @@ public class ZonaDeCobertura{
 	}
 
 	public boolean esZonaSolapada(ZonaDeCobertura zona) {
-		return this.epicentro.calcularDistancia(zona.getEpicentro()) < this.radio + zona.getRadio();
+		return this.getEpicentro().calcularDistancia(zona.getEpicentro()) < this.getRadio() + zona.getRadio();
 	}
 	
 	public boolean ubicacionEstaEnElRango(Ubicacion ubicacion) {
-		return ubicacion.calcularDistancia(epicentro) <= radio;
+		return ubicacion.calcularDistancia(this.getEpicentro()) <= this.getRadio();
 	}
 	
 	public void notificar(Muestra muestra, Funcionalidad funcionalidad) {
-		organizaciones.stream().forEach(o->o.funcionalidad(muestra, this, funcionalidad));
+		this.getOrganizaciones().stream().forEach(o->o.funcionalidad(muestra, this, funcionalidad));
 	}
 
 	public void registrar(Organizacion organizacion) {
-		organizaciones.add(organizacion);	
+		this.getOrganizaciones().add(organizacion);	
 	}
 	
 	public void sacar(Organizacion organizacion) {
-		organizaciones.remove(organizacion);
+		this.getOrganizaciones().remove(organizacion);
+	}
+
+	public List<Observer> getOrganizaciones() {
+		return organizaciones;
 	}
 	
 	
