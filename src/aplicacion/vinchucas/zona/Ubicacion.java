@@ -23,8 +23,8 @@ public class Ubicacion {
     public double calcularDistancia(Ubicacion otraUbicacion) {
         double radioTierra = 6371; // Radio promedio de la Tierra en kilómetros
 
-        double latitud1 = Math.toRadians(this.latitud);
-        double longitud1 = Math.toRadians(this.longitud);
+        double latitud1 = Math.toRadians(this.getLatitud());
+        double longitud1 = Math.toRadians(this.getLongitud());
         double latitud2 = Math.toRadians(otraUbicacion.getLatitud());
         double longitud2 = Math.toRadians(otraUbicacion.getLongitud());
 

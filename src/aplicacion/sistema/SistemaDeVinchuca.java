@@ -36,7 +36,7 @@ public class SistemaDeVinchuca {
 	}
 
 	public void agregarMuestra(Muestra muestra) {
-		this.muestras.add(muestra);
+		this.getMuestras().add(muestra);
 	} 
 	
 	public List<Muestra> todasLasMuestrasAMenosDe(Muestra muestra, double distancia){

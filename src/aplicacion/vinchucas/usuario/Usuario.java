@@ -31,9 +31,9 @@ public class Usuario {
 	}
 	
 	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
-		fechasRevisiones.add(LocalDate.now());
-		Opinion opinion = new Opinion(tipoOpinion, this.nivel, this);
-		this.nivel.opinar(muestra, opinion);
+		this.getFechasRevisiones().add(LocalDate.now());
+		Opinion opinion = new Opinion(tipoOpinion, this.getNivel(), this);
+		this.getNivel().opinar(muestra, opinion);
 	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {
@@ -42,12 +42,12 @@ public class Usuario {
 	}
 	
 	public void enviar() {
-		fechasEnvios.add(LocalDate.now());
+		this.getFechasEnvios().add(LocalDate.now());
 		this.actualizarNivel();
 	}
 	
 	public void actualizarNivel() {
-		this.nivel.actualizarNivel(this);
+		this.getNivel().actualizarNivel(this);
 	}
 
 	public Nivel getNivel() {
@@ -63,7 +63,7 @@ public class Usuario {
 	}
 
 	public void sumarRevision() {
-		fechasRevisiones.add(LocalDate.now());
+		this.getFechasRevisiones().add(LocalDate.now());
 	}
 	
 	public void setNivel(Nivel nivel) {
@@ -71,11 +71,15 @@ public class Usuario {
 	}
 
 	public int enviosEnLosUltimos30Dias() {
-		return fechasEnvios.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
+		return this.getFechasEnvios().stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
 	}
 	
+	public List<LocalDate> getFechasEnvios() {
+		return fechasEnvios;
+	}
+
 	public int revisionesEnLosUltimos30Dias() {
-		return fechasRevisiones.stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
+		return this.getFechasRevisiones().stream().filter(f->f.isAfter(LocalDate.now().minusDays(30))).toList().size();
 	}
 
 	public void setFechasEnvios(List<LocalDate> fechasEnvios) {

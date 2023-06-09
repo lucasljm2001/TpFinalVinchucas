@@ -34,7 +34,7 @@ public class Muestra {
 
 		void agregarHistorial(Opinion opinion) {
 			if(!this.opino(opinion.getUsuario())){
-				historial.add(opinion);
+				this.getHistorial().add(opinion);
 				opinion.getUsuario().sumarRevision();
 			}
 		}
@@ -44,20 +44,20 @@ public class Muestra {
 		}
 
 		public boolean dosExpertosOpinaronIgual(Opinion opinion) {
-			return historial.stream().filter(op -> op.esOpinionDe().esExperto()).anyMatch(op-> op.getTipo() == opinion.getTipo());
+			return this.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).anyMatch(op-> op.getTipo() == opinion.getTipo());
 		}
 		
 		public boolean opino(Usuario us) {
-			return historial.stream().anyMatch(o->o.getUsuario() == us);
+			return this.getHistorial().stream().anyMatch(o->o.getUsuario() == us);
 		}
 		
 		private void opinionPorDefecto(Usuario usuario, TipoDeOpinion topinion) {
 			Opinion opinion = new Opinion(topinion, usuario.getNivel(), usuario);
-			historial.add(opinion);
+			this.getHistorial().add(opinion);
 		}
 		
 		void actualizarResultado() {
-			this.verificacion.actualizarResultado(this);
+			this.getVerificacion().actualizarResultado(this);
 		}
 
 		public List<Opinion> getHistorial() {
