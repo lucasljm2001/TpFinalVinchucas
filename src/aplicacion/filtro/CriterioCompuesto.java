@@ -25,4 +25,4 @@ public abstract class CriterioCompuesto implements Filtro{
 	public List<Filtro> getFiltros() {
 		return filtros;
 	}
-}
+} 

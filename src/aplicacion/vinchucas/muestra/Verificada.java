@@ -4,7 +4,7 @@ public class Verificada extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion) {
-		// nadie puede opinar sobre muestras verificadas
+		// No tiene comportamiento porque no es posible que un USUARIO opine sobre muestras ya verificadas.
 	}
 	
 	@Override

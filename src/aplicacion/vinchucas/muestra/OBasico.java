@@ -15,14 +15,15 @@ public class OBasico extends Verificacion {
 	}
 
 	@Override
-	public void actualizarResultado(Muestra muestra) {
+	public void actualizarResultado(Muestra muestra){ 
+    //Cacular el tipo de opinion que mas votos tiene y lo defino como resultado actual.		
 		List<TipoDeOpinion> tipos = muestra.getHistorial().stream().map(op-> op.getTipo()).toList();
 		int max = 0;
 		TipoDeOpinion opAct = tipos.get(0);
 		for ( TipoDeOpinion tipo : tipos) {
 			int actual = tipos.stream().filter(t -> t == tipo).toList().size();
 			if (actual > max) {
-				opAct = tipo; 
+				opAct = tipo;    
 				max = actual;
 			} else if (actual == max){
 				opAct = TipoDeOpinion.NODEFINIDO;
@@ -31,3 +32,4 @@ public class OBasico extends Verificacion {
 		muestra.setResultadoActual(opAct);
 	}
 }
+ 
