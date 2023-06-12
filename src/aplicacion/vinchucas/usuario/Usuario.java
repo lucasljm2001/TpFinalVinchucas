@@ -31,7 +31,7 @@ public class Usuario {
 	}
 	
 	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
-		this.getFechasRevisiones().add(LocalDate.now());
+//		this.getFechasRevisiones().add(LocalDate.now());
 		Opinion opinion = new Opinion(tipoOpinion, this.getNivel(), this);
 		this.getNivel().opinar(muestra, opinion);
 	}
@@ -45,7 +45,7 @@ public class Usuario {
 		this.getFechasEnvios().add(LocalDate.now());
 		this.actualizarNivel();
 	}
-	
+	 
 	public void actualizarNivel() {
 		this.getNivel().actualizarNivel(this);
 	}

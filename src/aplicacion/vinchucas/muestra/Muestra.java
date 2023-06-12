@@ -30,7 +30,7 @@ public class Muestra {
 		
 		public Verificacion getVerificacion() {
 			return verificacion;
-		}
+		} 
 
 		void agregarHistorial(Opinion opinion) {
 			if(!this.opino(opinion.getUsuario())){

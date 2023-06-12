@@ -32,4 +32,4 @@ public class OBasico extends Verificacion {
 		muestra.setResultadoActual(opAct);
 	}
 }
- 
+  
