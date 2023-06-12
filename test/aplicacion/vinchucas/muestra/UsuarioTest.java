@@ -39,7 +39,7 @@ class UsuarioTest {
 		martin = new Usuario("300");  
 		pepe = spy(Usuario.class);
 		pepe.setNivel(new Experto()); 
-		lucas.esExperto();
+		lucas.esExterno();
 		sistema = mock(SistemaDeVinchuca.class);
 	
 		

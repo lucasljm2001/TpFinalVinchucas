@@ -54,7 +54,7 @@ public class Usuario {
 		return nivel;
 	}
 
-	public void esExperto() {
+	public void esExterno() {
 		this.nivel = new ExpertoExterno();
 	}
 	
