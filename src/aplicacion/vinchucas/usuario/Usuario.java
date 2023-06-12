@@ -20,10 +20,10 @@ public class Usuario {
 	}
 
 	public Usuario(String id) {
+		this();
 		this.id = id;
 		this.nivel = new Basico(); 
-		this.inicializarFechas();
-	}
+	} 
 		
 	private void inicializarFechas() {
 		this.fechasEnvios = new ArrayList<>();
