@@ -8,10 +8,10 @@ public abstract class Nivel {
 	
 	public abstract void actualizarNivel(Usuario usuario);
 	
-	public void opinar(Muestra muestra, Opinion opinion) {
-		muestra.opinar(opinion);
-		this.actualizarNivel(opinion.getUsuario());
-	}
+//	public void opinar(Muestra muestra, Opinion opinion) {
+//		muestra.opinar(opinion);
+//		this.actualizarNivel(opinion.getUsuario());
+//	}
 	
 	public Verificacion nuevaVerificacion() {
 		return new OExperto();

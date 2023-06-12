@@ -29,7 +29,7 @@ public class OExperto extends Verificacion {
 		else {
 			muestra.setResultadoActual(cantTipo.get(2));
 		}
-	}
+	} 
 	
 	private Map<Integer,TipoDeOpinion> numeroDeOpinionesPorTipo(List<Opinion> opiniones){
 		Map<Integer, TipoDeOpinion> cantTipo = new HashMap<Integer, TipoDeOpinion>();

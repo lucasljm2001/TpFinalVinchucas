@@ -31,9 +31,9 @@ public class Usuario {
 	}
 	
 	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
-//		this.getFechasRevisiones().add(LocalDate.now());
 		Opinion opinion = new Opinion(tipoOpinion, this.getNivel(), this);
-		this.getNivel().opinar(muestra, opinion);
+		muestra.opinar(opinion);
+		this.actualizarNivel();
 	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {

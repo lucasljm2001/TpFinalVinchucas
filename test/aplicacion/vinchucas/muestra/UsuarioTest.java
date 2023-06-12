@@ -26,7 +26,6 @@ class UsuarioTest {
 	Usuario lucas;
 	Usuario margo;
 	Usuario martin;
-	List<Muestra> muestras;
 	List<Usuario> usuarios;
 	Opinion opinion;
 	SistemaDeVinchuca sistema;
@@ -37,17 +36,13 @@ class UsuarioTest {
 	void setUp() {
 		margo = new Usuario("100");
 		lucas = new Usuario("200");
-		martin = new Usuario("300"); 
+		martin = new Usuario("300");  
 		pepe = spy(Usuario.class);
 		pepe.setNivel(new Experto()); 
 		lucas.esExperto();
-		muestras = new ArrayList<Muestra>();
 		sistema = mock(SistemaDeVinchuca.class);
 	
-		for (int i=0; i < 40; i++) {
-			muestras.add(mock(Muestra.class));		
-			when(muestras.get(i).getVerificacion()).thenReturn(mock(OBasico.class));
-		}
+		
 		opinion = mock(Opinion.class);
 		}
 			
@@ -56,12 +51,13 @@ class UsuarioTest {
 		// un usario sube y baja de nivel por las opiniones y envios al sistema. 
 		Ubicacion ubicacion = mock(Ubicacion.class);
 		
-		for(int i=0; i< 21; i++) {
-			martin.opinar(muestras.get(i), TipoDeOpinion.IMAGENPOCOCLARA);	
+		for(int i=0; i< 22; i++) {
+			martin.sumarRevision();
 		}
 		for(int i=22; i < 33 ;i++ ) {
 			martin.enviar("Vinchuca.jpg", ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA, sistema);
 		}
+
 		assertTrue(martin.getNivel().esExperto());
 		martin.setFechasEnvios(new ArrayList<LocalDate>()); 
 		martin.actualizarNivel();
@@ -70,7 +66,9 @@ class UsuarioTest {
 	
 	@Test
 	void elExpertoExternoNoCambia() {
-		lucas.opinar(muestras.get(1), TipoDeOpinion.IMAGENPOCOCLARA);;
+		lucas.setFechasEnvios(new ArrayList<LocalDate>());
+		lucas.actualizarNivel();
+//		lucas.opinar(muestras.get(1), TipoDeOpinion.IMAGENPOCOCLARA);;
 		assertTrue(lucas.getNivel().esExperto());
 	} 
 	
