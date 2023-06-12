@@ -19,12 +19,12 @@ public class ZonaDeCobertura{
 		this.radio = radio;
 		this.nombre = nombre;
 		this.epicentro = epicentro;
-		organizaciones = new ArrayList<Observer>();
+		this.organizaciones = new ArrayList<Observer>();
 	}
 
 	public double getRadio() {
 		return radio;  
-	}
+	} 
 
 	public Ubicacion getEpicentro() {
 		return epicentro;
@@ -43,7 +43,7 @@ public class ZonaDeCobertura{
 	}
 
 	public void registrar(Organizacion organizacion) {
-		this.getOrganizaciones().add(organizacion);	
+		this.getOrganizaciones().add(organizacion);	 
 	}
 	
 	public void sacar(Organizacion organizacion) {

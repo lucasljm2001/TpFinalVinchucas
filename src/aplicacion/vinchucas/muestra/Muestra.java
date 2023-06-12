@@ -60,7 +60,7 @@ public class Muestra {
 			this.getVerificacion().actualizarResultado(this);
 		}
 
-		public List<Opinion> getHistorial() {
+		public List<Opinion> getHistorial() { 
 			return historial;
 		}
 

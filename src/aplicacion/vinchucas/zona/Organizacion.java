@@ -28,7 +28,7 @@ public class Organizacion implements Observer{
 
 
 	public FuncionalidadExterna getFuncionalidadDeNuevaMuestra() {
-		return funcionalidadDeNuevaMuestra;
+		return funcionalidadDeNuevaMuestra; 
 	}
 
 

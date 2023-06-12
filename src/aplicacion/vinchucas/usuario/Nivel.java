@@ -8,11 +8,7 @@ public abstract class Nivel {
 	
 	public abstract void actualizarNivel(Usuario usuario);
 	
-//	public void opinar(Muestra muestra, Opinion opinion) {
-//		muestra.opinar(opinion);
-//		this.actualizarNivel(opinion.getUsuario());
-//	}
-	
+//	Este metodo se utiliza en el constructor de la muestra para que la muestra tenga su nivel. 
 	public Verificacion nuevaVerificacion() {
 		return new OExperto();
 	}

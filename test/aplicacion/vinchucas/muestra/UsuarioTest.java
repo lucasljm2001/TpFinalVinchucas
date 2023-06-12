@@ -68,7 +68,6 @@ class UsuarioTest {
 	void elExpertoExternoNoCambia() {
 		lucas.setFechasEnvios(new ArrayList<LocalDate>());
 		lucas.actualizarNivel();
-//		lucas.opinar(muestras.get(1), TipoDeOpinion.IMAGENPOCOCLARA);;
 		assertTrue(lucas.getNivel().esExperto());
 	} 
 	
