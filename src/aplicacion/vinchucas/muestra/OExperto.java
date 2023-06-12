@@ -13,17 +13,12 @@ public class OExperto extends Verificacion {
 			muestra.setVerificacion(new Verificada());
 		}
 		this.actualizarResultado(muestra);
-	}
+	} 
 
 	@Override
 	public void actualizarResultado(Muestra muestra) {
 		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).toList();
-		Map<Integer, TipoDeOpinion> cantTipo = new HashMap<Integer, TipoDeOpinion>();
-		// Mover for a un metodo aparte
-		for (Opinion opinion : opiniones) {
-			Integer actual = opiniones.stream().filter(o -> o.getTipo()==opinion.getTipo()).toList().size();
-			cantTipo.put(actual, opinion.getTipo());
-		}
+		Map<Integer, TipoDeOpinion> cantTipo = this.numeroDeOpinionesPorTipo(opiniones);
 		boolean algunaOpinionConDos = cantTipo.keySet().stream().anyMatch(i -> i>1);
 		if(opiniones.size()==1) {
 			muestra.setResultadoActual(opiniones.get(0).getTipo());
@@ -34,6 +29,15 @@ public class OExperto extends Verificacion {
 		else {
 			muestra.setResultadoActual(cantTipo.get(2));
 		}
+	}
+	
+	private Map<Integer,TipoDeOpinion> numeroDeOpinionesPorTipo(List<Opinion> opiniones){
+		Map<Integer, TipoDeOpinion> cantTipo = new HashMap<Integer, TipoDeOpinion>();
+		for (Opinion opinion : opiniones) {
+			Integer actual = opiniones.stream().filter(o -> o.getTipo()==opinion.getTipo()).toList().size();
+			cantTipo.put(actual, opinion.getTipo());
+		}
+			return cantTipo;
 	}
 
 }
