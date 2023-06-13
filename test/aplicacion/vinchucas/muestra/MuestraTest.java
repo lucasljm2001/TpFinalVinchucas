@@ -1,8 +1,9 @@
 package aplicacion.vinchucas.muestra;
+import aplicacion.sistema.SistemaDeVinchuca;
 import aplicacion.vinchucas.usuario.Basico;
 import aplicacion.vinchucas.usuario.Experto;
 import aplicacion.vinchucas.usuario.Usuario;
-
+import aplicacion.vinchucas.zona.Funcionalidad;
 import aplicacion.vinchucas.zona.Ubicacion;
 
 import java.time.LocalDate;
@@ -28,8 +29,10 @@ class MuestraTest {
 	Opinion op3;
 	Opinion op4;
 	Opinion op5;
+	Opinion op6;
 	Ubicacion ubicacion;
 	TipoDeOpinion tipoDeOpinion;
+	SistemaDeVinchuca sistema;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -38,25 +41,28 @@ class MuestraTest {
 		pepin = mock(Usuario.class);
 		nahu = mock(Usuario.class);
 		ubicacion = mock(Ubicacion.class);
+		sistema = mock(SistemaDeVinchuca.class);
 				
 		op1 = mock(Opinion.class);
 		op2 = mock(Opinion.class);
 		op3 = mock(Opinion.class);
 		op4 = mock(Opinion.class); 
 		op5 = mock(Opinion.class);
-		 
+		op6 = mock(Opinion.class);
+		
 		when(op1.getUsuario()).thenReturn(margo);
 		when(op2.getUsuario()).thenReturn(lucas);
 		when(op3.getUsuario()).thenReturn(pepin);
 		when(op4.getUsuario()).thenReturn(margo);
 		when(op5.getUsuario()).thenReturn(nahu);
+		when(op6.getUsuario()).thenReturn(lucas);
 		
 		when(op1.esOpinionDe()).thenReturn(new Experto());
 		when(op2.esOpinionDe()).thenReturn(new Experto());
 		when(op3.esOpinionDe()).thenReturn(new Basico());
 		when(op4.esOpinionDe()).thenReturn(new Experto());
 		when(op5.esOpinionDe()).thenReturn(new Basico());
-		
+		when(op6.esOpinionDe()).thenReturn(new Experto());
 
 		when(margo.getNivel()).thenReturn(new Experto());
 		when(lucas.getNivel()).thenReturn(new Experto());
@@ -69,10 +75,12 @@ class MuestraTest {
 		when(op3.getTipo()).thenReturn(TipoDeOpinion.PHTIACHINCHE);
 		when(op4.getTipo()).thenReturn(TipoDeOpinion.VINCHUCASORDIDA);
 		when(op5.getTipo()).thenReturn(TipoDeOpinion.NINGUNA);
+		when(op6.getTipo()).thenReturn(TipoDeOpinion.CHINCHEFOLIADA);
 		
 		tipoDeOpinion = TipoDeOpinion.VINCHUCASORDIDA;
 		muestra = new Muestra("muestra.jpg", lucas, ubicacion, tipoDeOpinion);
 		muestra2 = new Muestra("muestra2.jpg", pepin, ubicacion, tipoDeOpinion);
+		
 	}
 
 	@Test
@@ -135,5 +143,18 @@ class MuestraTest {
 	@Test
 	void ultimaModifDeLaMuestra() {
 		assertEquals(LocalDate.now(), muestra.ultimaModificacion());
+	}
+
+	@Test
+	void alTenerUnaNuevaVerificacionAvisoAlSistema() {
+		muestra2.getVerificacion().opinar(muestra2, op1);
+		muestra2.opinar(op6, sistema);
+		verify(sistema).notificarCambioALasZonas(muestra2, Funcionalidad.NUEVAVALIDACION);
+	}
+	
+	@Test
+	void sinEstarVerificadaNoAvisoAlSistema() {
+		muestra2.opinar(op6, sistema);
+		verifyNoInteractions(sistema);
 	}
 }
