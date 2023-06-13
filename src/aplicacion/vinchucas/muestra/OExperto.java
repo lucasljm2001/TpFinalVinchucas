@@ -2,6 +2,9 @@ package aplicacion.vinchucas.muestra;
 
 import java.util.*;
 
+import aplicacion.sistema.SistemaDeVinchuca;
+import aplicacion.vinchucas.zona.Funcionalidad;
+
 public class OExperto extends Verificacion {
 
 	@Override
@@ -25,6 +28,7 @@ public class OExperto extends Verificacion {
 		}
 		else if (!algunaOpinionConDos) {
 			muestra.setResultadoActual(TipoDeOpinion.NODEFINIDO);
+			
 		}
 		else {
 			muestra.setResultadoActual(cantTipo.get(2));
@@ -39,5 +43,7 @@ public class OExperto extends Verificacion {
 		}
 			return cantTipo;
 	}
+	
+	
 
 }

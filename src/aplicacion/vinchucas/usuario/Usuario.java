@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import aplicacion.sistema.SistemaDeVinchuca;
 import aplicacion.vinchucas.*;
 import aplicacion.vinchucas.muestra.*;
+import aplicacion.vinchucas.zona.Funcionalidad;
 import aplicacion.vinchucas.zona.Ubicacion;
 
 
@@ -30,14 +31,16 @@ public class Usuario {
 		this.fechasRevisiones = new ArrayList<>();
 	}
 	
-	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion) {
+	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion, SistemaDeVinchuca sistema) {
 		Opinion opinion = new Opinion(tipoOpinion, this.getNivel(), this);
-		muestra.opinar(opinion);
+		muestra.opinar(opinion, sistema);
 		this.actualizarNivel();
 	}
 	
 	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {
-		sistema.agregarMuestra(new Muestra(foto, this, ubicacion, opinion));
+		Muestra muestra = new Muestra(foto, this, ubicacion, opinion);
+		sistema.notificarCambioALasZonas( muestra,  Funcionalidad.NUEVAMUESTRA);
+		sistema.agregarMuestra(muestra);
 		this.enviar();
 	}
 	

@@ -12,6 +12,7 @@ import java.util.*;
 import aplicacion.vinchucas.muestra.Muestra;
 import aplicacion.vinchucas.muestra.TipoDeOpinion;
 import aplicacion.vinchucas.usuario.Usuario;
+import aplicacion.vinchucas.zona.Funcionalidad;
 import aplicacion.vinchucas.zona.Ubicacion;
 import aplicacion.vinchucas.zona.ZonaDeCobertura;
 
@@ -20,6 +21,7 @@ class SistemaTest {
 	ZonaDeCobertura bernal;
 	ZonaDeCobertura berazategui;
 	ZonaDeCobertura varela;
+	ZonaDeCobertura zonaMock;
 	
 	Muestra muestra1;
 	Muestra muestra2;
@@ -46,6 +48,8 @@ class SistemaTest {
 		muestra5 = mock(Muestra.class);
 		muestra6 = mock(Muestra.class);
 		usuario = mock(Usuario.class);
+		zonaMock = mock(ZonaDeCobertura.class);
+		
 		Muestra[] mues = {muestra1,muestra2,muestra3,muestra4,muestra5};
 		List<Muestra> muestras = Arrays.asList(mues);
 		
@@ -57,8 +61,9 @@ class SistemaTest {
 		bernal = new ZonaDeCobertura(500, "Bernal", ubi1);
 		berazategui = new ZonaDeCobertura(500, "Berazategui", ubi2);
 		varela = new ZonaDeCobertura(200, "Varela", ubi3);
+		when(zonaMock.ubicacionEstaEnElRango(ubi1)).thenReturn(true);
 		
-		ZonaDeCobertura[] zon = {bernal, berazategui, varela};
+		ZonaDeCobertura[] zon = {bernal, berazategui, varela, zonaMock};
 		List<ZonaDeCobertura> zonas = Arrays.asList(zon);
 				
 		
@@ -104,6 +109,11 @@ class SistemaTest {
 		verify(usuario).enviar("foto.jpg", ubi1, TipoDeOpinion.NINGUNA, sistema);
 	}
 	
+	@Test
+	void seValidaUnaNuevaMuestra() {
+		sistema.notificarCambioALasZonas(muestra1, Funcionalidad.NUEVAVALIDACION);
+		verify(zonaMock).notificar(muestra1, Funcionalidad.NUEVAVALIDACION);
+	}
 	
 	
 	

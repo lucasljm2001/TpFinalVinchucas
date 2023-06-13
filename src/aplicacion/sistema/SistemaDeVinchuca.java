@@ -6,6 +6,7 @@ import java.util.*;
 import aplicacion.vinchucas.muestra.Muestra;
 import aplicacion.vinchucas.muestra.TipoDeOpinion;
 import aplicacion.vinchucas.usuario.Usuario;
+import aplicacion.vinchucas.zona.Funcionalidad;
 import aplicacion.vinchucas.zona.Ubicacion;
 import aplicacion.vinchucas.zona.ZonaDeCobertura;
 
@@ -24,7 +25,7 @@ public class SistemaDeVinchuca {
 	}
 
 	public List<Muestra> getMuestras() {
-		return muestras;
+		return muestras; 
 	}
 	
 	public List<ZonaDeCobertura> getZonas() {
@@ -54,5 +55,10 @@ public class SistemaDeVinchuca {
 		return this.getMuestras().stream()
 				.filter(m-> zona.ubicacionEstaEnElRango(m.getUbicacion())).toList();
 	}
+	
+	public void notificarCambioALasZonas(Muestra muestra, Funcionalidad funcionalidad) {
+		this.getZonas().stream().filter(z -> this.muestrasDeZona(z).contains(muestra)).forEach(z -> z.notificar(muestra,funcionalidad));
+	}
+	
 	
 }

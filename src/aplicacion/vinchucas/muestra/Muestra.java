@@ -3,7 +3,9 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
 
+import aplicacion.sistema.SistemaDeVinchuca;
 import aplicacion.vinchucas.usuario.Usuario;
+import aplicacion.vinchucas.zona.Funcionalidad;
 import aplicacion.vinchucas.zona.Ubicacion;
 
 public class Muestra {
@@ -76,7 +78,10 @@ public class Muestra {
 			return ubicacion;
 		}
 	
-		public void opinar(Opinion opinion) {
+		public void opinar(Opinion opinion, SistemaDeVinchuca sistema) {
+			if(this.dosExpertosOpinaronIgual(opinion)) {
+				sistema.notificarCambioALasZonas(this, Funcionalidad.NUEVAVALIDACION);
+			}
 			this.getVerificacion().opinar(this, opinion);
 		}
 
