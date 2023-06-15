@@ -32,7 +32,7 @@ public class Usuario {
 	}
 	
 	public void opinar(Muestra muestra, TipoDeOpinion tipoOpinion, SistemaDeVinchuca sistema) {
-		Opinion opinion = new Opinion(tipoOpinion, this.getNivel(), this);
+		Opinion opinion = new Opinion(tipoOpinion,this);
 		muestra.opinar(opinion, sistema);
 		this.actualizarNivel();
 	}

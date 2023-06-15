@@ -11,10 +11,10 @@ public class Opinion {
 	private Nivel nivel;
 	private Usuario usuario;
 
-	public Opinion(TipoDeOpinion opinion, Nivel nivel, Usuario usuario) {
+	public Opinion(TipoDeOpinion opinion, Usuario usuario) {
 		this.fecha = LocalDate.now();
 		this.opinion = opinion;
-		this.nivel = nivel;
+		this.nivel = usuario.getNivel();
 		this.usuario = usuario;
 	}
 

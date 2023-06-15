@@ -54,7 +54,7 @@ public class Muestra {
 		}
 		
 		private void opinionPorDefecto(Usuario usuario, TipoDeOpinion topinion) {
-			Opinion opinion = new Opinion(topinion, usuario.getNivel(), usuario);
+			Opinion opinion = new Opinion(topinion, usuario);
 			this.getHistorial().add(opinion);
 		}
 		
