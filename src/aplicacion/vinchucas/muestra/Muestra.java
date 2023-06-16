@@ -93,4 +93,8 @@ public class Muestra {
 			return this.getHistorial().get(this.getHistorial().size()-1).getFecha();
 		}
 		
+		public TVerificacion getValorVerificacion() {
+			return this.getVerificacion().getValorVerificacion();
+		}
+		
 }

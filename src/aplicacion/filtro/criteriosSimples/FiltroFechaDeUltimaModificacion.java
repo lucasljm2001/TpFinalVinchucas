@@ -19,6 +19,7 @@ public class FiltroFechaDeUltimaModificacion implements CriterioSimple{
 
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
+		muestras.stream().filter(m -> this.criterio.comparar(m,fecha))
 		return criterio.filtrar(muestras, fecha);
 	}
 
