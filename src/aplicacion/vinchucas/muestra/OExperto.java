@@ -8,16 +8,21 @@ import aplicacion.vinchucas.zona.Funcionalidad;
 public class OExperto extends Verificacion {
 
 	@Override
-	public void opinar(Muestra muestra, Opinion opinion) {
+	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
 		if (opinion.esOpinionDe().esExperto()) {
 			muestra.agregarHistorial(opinion);
 		} 
 		if (muestra.dosExpertosOpinaronIgual(opinion)) {
 			muestra.setVerificacion(new Verificada());
+			sistema.notificarCambioALasZonas(muestra, Funcionalidad.NUEVAVALIDACION);
 		}
 		this.actualizarResultado(muestra);
 	} 
 
+	public TVerificacion getValorVerificacion() {
+		return TVerificacion.OEXPERTO;
+	}
+	
 	@Override
 	public void actualizarResultado(Muestra muestra) {
 		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).toList();

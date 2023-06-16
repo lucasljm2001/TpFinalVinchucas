@@ -105,8 +105,9 @@ class SistemaTest {
 	
 	@Test
 	void elSistemaHaceEnviarAlUsuario() {
-		sistema.usuarioEnviarMuestra(usuario, "foto.jpg", ubi1, TipoDeOpinion.NINGUNA);
-		verify(usuario).enviar("foto.jpg", ubi1, TipoDeOpinion.NINGUNA, sistema);
+		Muestra muestra = mock(Muestra.class);
+		sistema.usuarioEnviarMuestra(usuario, muestra);
+		verify(usuario).enviar(muestra, sistema);
 	}
 	
 	@Test

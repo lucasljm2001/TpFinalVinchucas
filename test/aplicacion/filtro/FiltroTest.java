@@ -26,6 +26,7 @@ import aplicacion.filtro.criteriosSimples.fechas.FechaPosterior;
 import aplicacion.vinchucas.muestra.Muestra;
 import aplicacion.vinchucas.muestra.OBasico;
 import aplicacion.vinchucas.muestra.OExperto;
+import aplicacion.vinchucas.muestra.TVerificacion;
 import aplicacion.vinchucas.muestra.TipoDeOpinion;
 import aplicacion.vinchucas.muestra.Verificada;
 import aplicacion.vinchucas.usuario.Experto;
@@ -79,10 +80,10 @@ class FiltroTest {
 		when(muestra3.getResultadoActual()).thenReturn(TipoDeOpinion.VINCHUCAGUASAYANA);
 		when(muestra4.getResultadoActual()).thenReturn(TipoDeOpinion.PHTIACHINCHE);
 		
-		when(muestra1.getVerificacion()).thenReturn(new Verificada());
-		when(muestra2.getVerificacion()).thenReturn(new Verificada());
-		when(muestra3.getVerificacion()).thenReturn(new Verificada());
-		when(muestra4.getVerificacion()).thenReturn(new OExperto());
+		when(muestra1.getValorVerificacion()).thenReturn(TVerificacion.VERIFICADA);
+		when(muestra2.getValorVerificacion()).thenReturn(TVerificacion.VERIFICADA);
+		when(muestra3.getValorVerificacion()).thenReturn(TVerificacion.VERIFICADA);
+		when(muestra4.getValorVerificacion()).thenReturn(TVerificacion.OEXPERTO);
 		
 		when(muestra1.getFecha()).thenReturn(LocalDate.now());
 		when(muestra2.getFecha()).thenReturn(LocalDate.now());

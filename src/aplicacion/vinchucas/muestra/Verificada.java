@@ -1,15 +1,21 @@
 package aplicacion.vinchucas.muestra;
 
+import aplicacion.sistema.SistemaDeVinchuca;
+
 public class Verificada extends Verificacion {
 
 	@Override
-	public void opinar(Muestra muestra, Opinion opinion) {
+	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
 		// No tiene comportamiento porque no es posible que un USUARIO opine sobre muestras ya verificadas.
 	}
 	
 	@Override
 	public boolean esVerificada() {
 		return true;
+	}
+	
+	public TVerificacion getValorVerificacion() {
+		return TVerificacion.VERIFICADA;
 	}
 
 	@Override

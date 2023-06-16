@@ -39,7 +39,9 @@ public class ZonaDeCobertura{
 	}
 	
 	public void notificar(Muestra muestra, Funcionalidad funcionalidad) {
-		this.getOrganizaciones().stream().forEach(o->o.funcionalidad(muestra, this, funcionalidad));
+		if (this.ubicacionEstaEnElRango(muestra.getUbicacion())) {
+			this.getOrganizaciones().stream().forEach(o->o.funcionalidad(muestra, this, funcionalidad));			
+		}
 	}
 
 	public void registrar(Organizacion organizacion) {

@@ -9,9 +9,8 @@ import aplicacion.vinchucas.muestra.Muestra;
 public class FechaAnterior implements CriterioFecha {
 
 	@Override
-	public List<Muestra> filtrar(List<Muestra> muestras, LocalDate fecha) {
-		return muestras.stream()
-				.filter(m -> m.ultimaModificacion().isBefore(fecha)).toList();
+	public boolean comparar(Muestra muestra, LocalDate fecha) {
+		return muestra.ultimaModificacion().isBefore(fecha);
 	}
 
 }

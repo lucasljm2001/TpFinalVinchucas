@@ -44,6 +44,7 @@ class ZonaTest {
 		when(centroBerazategui.calcularDistancia(centroVarela)).thenReturn(200d);
 		varela.registrar(org1);
 		muestra = mock(Muestra.class);
+		when(muestra.getUbicacion()).thenReturn(centroVarela);
 	}
 
 	@Test

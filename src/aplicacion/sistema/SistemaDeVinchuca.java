@@ -32,12 +32,13 @@ public class SistemaDeVinchuca {
 		return zonas;
 	}
 	
-	public void usuarioEnviarMuestra(Usuario usuario, String foto, Ubicacion ubicacion, TipoDeOpinion opinion) {
-		usuario.enviar(foto, ubicacion, opinion, this);
+	public void usuarioEnviarMuestra(Usuario usuario, Muestra muestra) {
+		usuario.enviar(muestra, this);
 	}
 
 	public void agregarMuestra(Muestra muestra) {
 		this.getMuestras().add(muestra);
+		this.notificarCambioALasZonas(muestra, Funcionalidad.NUEVAMUESTRA);
 	} 
 	
 	public List<Muestra> todasLasMuestrasAMenosDe(Muestra muestra, double distancia){
@@ -57,7 +58,7 @@ public class SistemaDeVinchuca {
 	}
 	
 	public void notificarCambioALasZonas(Muestra muestra, Funcionalidad funcionalidad) {
-		this.getZonas().stream().filter(z -> this.muestrasDeZona(z).contains(muestra)).forEach(z -> z.notificar(muestra,funcionalidad));
+		this.getZonas().stream().forEach(z -> z.notificar(muestra,funcionalidad));
 	}
 	
 	

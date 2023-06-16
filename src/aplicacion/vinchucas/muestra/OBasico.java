@@ -3,15 +3,21 @@ package aplicacion.vinchucas.muestra;
 import java.util.List;
 import java.util.stream.Stream;
 
+import aplicacion.sistema.SistemaDeVinchuca;
+
 public class OBasico extends Verificacion {
 
 	@Override
-	public void opinar(Muestra muestra, Opinion opinion) {
+	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
 		if (opinion.esOpinionDe().esExperto()) {
 			muestra.setVerificacion(new OExperto());
 			}
 		muestra.agregarHistorial(opinion);
 		muestra.actualizarResultado();
+	}
+	
+	public TVerificacion getValorVerificacion() {
+		return TVerificacion.OBASICO;
 	}
 
 	@Override

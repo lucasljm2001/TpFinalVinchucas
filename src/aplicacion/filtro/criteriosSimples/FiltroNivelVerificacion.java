@@ -16,7 +16,7 @@ public class FiltroNivelVerificacion implements CriterioSimple {
 
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
-		return muestras.stream().filter(m -> m.getVerificacion().getClass() == verificacion.getClass()).toList();
+		return muestras.stream().filter(m -> m.getValorVerificacion() == verificacion.getValorVerificacion()).toList();
 		// Aprobado por el Profesor Diego Cano, lo consultamos en una clase presencial y nos dijo que estaba OK preguntarle 
 		// el tipo de clase, ya que es no es un método que usamos recurrentemente, sino sólo en este filtro.
 	}

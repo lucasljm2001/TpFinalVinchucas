@@ -90,43 +90,43 @@ class MuestraTest {
 	
 	@Test
 	void usuarioBasicoNoPuedeOpinarLuegoDelExperto() {
-		muestra.getVerificacion().opinar(muestra,op3);
+		muestra.getVerificacion().opinar(muestra,op3, sistema);
 		assertEquals(1,muestra.getHistorial().size());
 	}
 
 	@Test
 	void dosExpertosOpinanIgualYNadieMasPuedeVotar() { 
-		muestra.getVerificacion().opinar(muestra,op4);
+		muestra.getVerificacion().opinar(muestra,op4, sistema);
 		assertTrue(muestra.getVerificacion().esVerificada());
 		muestra.actualizarResultado();
 		assertEquals(TipoDeOpinion.VINCHUCASORDIDA, muestra.getResultadoActual());
-		muestra.getVerificacion().opinar(muestra,op3);
+		muestra.getVerificacion().opinar(muestra,op3, sistema);
 		assertEquals(2,muestra.getHistorial().size());
 	}
 	
 	@Test
 	void dosExpertosNoOpinanIgual() { 
-		muestra.getVerificacion().opinar(muestra,op1);
+		muestra.getVerificacion().opinar(muestra,op1, sistema);
 		assertEquals(TipoDeOpinion.NODEFINIDO, muestra.getResultadoActual());
 	}
 	
 	@Test
 	void nadiePuedeVotarDosVecesSobreLaMismaMuestra() {
-		muestra.getVerificacion().opinar(muestra,op2);
+		muestra.getVerificacion().opinar(muestra,op2, sistema);
 		assertEquals(1,muestra.getHistorial().size());
 	}
 	
 	@Test
 	void dosUsuariosBasicoOpinan() {
-		muestra2.getVerificacion().opinar(muestra2,op5);
+		muestra2.getVerificacion().opinar(muestra2,op5, sistema);
 		assertEquals(2,muestra2.getHistorial().size());
 	}
 		
 	@Test
 	void dosUsuariosBasicoOpinanYLuegoOpinaUnExperto() {
-		muestra2.getVerificacion().opinar(muestra2,op5);
+		muestra2.getVerificacion().opinar(muestra2,op5, sistema);
 		assertEquals(2,muestra2.getHistorial().size());
-		muestra2.getVerificacion().opinar(muestra2, op1);
+		muestra2.getVerificacion().opinar(muestra2, op1, sistema);
 		assertEquals(TipoDeOpinion.CHINCHEFOLIADA, muestra2.getResultadoActual());
 	}
 	
@@ -147,7 +147,7 @@ class MuestraTest {
 
 	@Test
 	void alTenerUnaNuevaVerificacionAvisoAlSistema() {
-		muestra2.getVerificacion().opinar(muestra2, op1);
+		muestra2.getVerificacion().opinar(muestra2, op1, sistema);
 		muestra2.opinar(op6, sistema);
 		verify(sistema).notificarCambioALasZonas(muestra2, Funcionalidad.NUEVAVALIDACION);
 	}

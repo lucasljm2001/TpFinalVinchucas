@@ -37,9 +37,7 @@ public class Usuario {
 		this.actualizarNivel();
 	}
 	
-	public void enviar(String foto, Ubicacion ubicacion, TipoDeOpinion opinion, SistemaDeVinchuca sistema) {
-		Muestra muestra = new Muestra(foto, this, ubicacion, opinion);
-		sistema.notificarCambioALasZonas( muestra,  Funcionalidad.NUEVAMUESTRA);
+	public void enviar(Muestra muestra, SistemaDeVinchuca sistema) {
 		sistema.agregarMuestra(muestra);
 		this.enviar();
 	}

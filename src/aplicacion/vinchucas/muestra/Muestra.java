@@ -79,10 +79,10 @@ public class Muestra {
 		}
 	
 		public void opinar(Opinion opinion, SistemaDeVinchuca sistema) {
-			if(this.dosExpertosOpinaronIgual(opinion)) {
-				sistema.notificarCambioALasZonas(this, Funcionalidad.NUEVAVALIDACION);
-			}
-			this.getVerificacion().opinar(this, opinion);
+//			if(this.dosExpertosOpinaronIgual(opinion)) {
+//				sistema.notificarCambioALasZonas(this, Funcionalidad.NUEVAVALIDACION);
+//			}
+			this.getVerificacion().opinar(this, opinion, sistema);
 		}
 
 		public LocalDate getFecha() {

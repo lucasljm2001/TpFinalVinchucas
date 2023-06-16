@@ -6,5 +6,5 @@ import java.util.List;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public interface CriterioFecha {
-	public List<Muestra> filtrar(List<Muestra> muestras, LocalDate fecha);
+	public boolean comparar(Muestra muestra, LocalDate fecha);
 }

@@ -55,7 +55,7 @@ class UsuarioTest {
 			martin.sumarRevision();
 		}
 		for(int i=22; i < 33 ;i++ ) {
-			martin.enviar("Vinchuca.jpg", ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA, sistema);
+			martin.enviar(new Muestra("Vinchuca.jpg", martin, ubicacion, TipoDeOpinion.VINCHUCAGUASAYANA), sistema);
 		}
 
 		assertTrue(martin.getNivel().esExperto());
