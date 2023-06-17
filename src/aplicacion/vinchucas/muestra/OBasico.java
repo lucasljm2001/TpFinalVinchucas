@@ -9,19 +9,20 @@ public class OBasico extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
-		if (opinion.esOpinionDe().esExperto()) {
+		if (opinion.esOpinionDeExperto()) {
 			muestra.setVerificacion(new OExperto());
 			}
 		muestra.agregarHistorial(opinion);
-		muestra.actualizarResultado();
+		this.actualizarResultado(muestra, sistema);
 	}
 	
 	public TVerificacion getValorVerificacion() {
 		return TVerificacion.OBASICO;
 	}
 
+
 	@Override
-	public void actualizarResultado(Muestra muestra){ 
+	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema){ 
     //Cacular el tipo de opinion que mas votos tiene y lo defino como resultado actual.		
 		List<TipoDeOpinion> tipos = muestra.getHistorial().stream().map(op-> op.getTipo()).toList();
 		int max = 0;

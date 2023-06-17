@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aplicacion.filtro.CriterioCompuesto;
+import aplicacion.filtro.Filtro;
 import aplicacion.vinchucas.muestra.Muestra;
 
 public class FiltroAnd extends CriterioCompuesto {
@@ -15,12 +16,8 @@ public class FiltroAnd extends CriterioCompuesto {
 	@Override
 	public List<Muestra> filtrar(List<Muestra> muestras) {
 		List<Muestra> resultado = new ArrayList<Muestra>();
-		
-		for (int i=0; i < this.getFiltros().size()-1; i++) {
-			resultado.addAll(this.getFiltros().get(i).filtrar(muestras));
-			resultado.retainAll(this.getFiltros().get(i+1).filtrar(muestras));
-		}
-
+		resultado.addAll(this.getFiltros().get(0).filtrar(muestras));
+		this.getFiltros().stream().forEach(f -> resultado.retainAll(f.filtrar(muestras)));
 		return resultado;
 	}
 

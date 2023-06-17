@@ -9,14 +9,10 @@ public class OExperto extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
-		if (opinion.esOpinionDe().esExperto()) {
+		if (opinion.esOpinionDeExperto()) {
 			muestra.agregarHistorial(opinion);
 		} 
-		if (muestra.dosExpertosOpinaronIgual(opinion)) {
-			muestra.setVerificacion(new Verificada());
-			sistema.notificarCambioALasZonas(muestra, Funcionalidad.NUEVAVALIDACION);
-		}
-		this.actualizarResultado(muestra);
+		this.actualizarResultado(muestra, sistema);
 	} 
 
 	public TVerificacion getValorVerificacion() {
@@ -24,7 +20,7 @@ public class OExperto extends Verificacion {
 	}
 	
 	@Override
-	public void actualizarResultado(Muestra muestra) {
+	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema) {
 		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).toList();
 		Map<Integer, TipoDeOpinion> cantTipo = this.numeroDeOpinionesPorTipo(opiniones);
 		boolean algunaOpinionConDos = cantTipo.keySet().stream().anyMatch(i -> i>1);
@@ -37,6 +33,8 @@ public class OExperto extends Verificacion {
 		}
 		else {
 			muestra.setResultadoActual(cantTipo.get(2));
+			muestra.setVerificacion(new Verificada());
+			sistema.notificarCambioALasZonas(muestra, Funcionalidad.NUEVAVALIDACION);
 		}
 	} 
 	

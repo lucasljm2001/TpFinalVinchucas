@@ -18,8 +18,9 @@ public class Verificada extends Verificacion {
 		return TVerificacion.VERIFICADA;
 	}
 
+
 	@Override
-	public void actualizarResultado(Muestra muestra) {
+	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema) {
 		muestra.setResultadoActual(this.ultimoTipoDeOpinion(muestra));		
 	}
 

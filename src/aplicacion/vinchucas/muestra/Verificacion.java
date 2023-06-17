@@ -10,7 +10,7 @@ public abstract class Verificacion {
 		return false;
 	}
 
-	public abstract void actualizarResultado(Muestra muestra);
+	public abstract void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema);
 	
 	public abstract TVerificacion getValorVerificacion();
 

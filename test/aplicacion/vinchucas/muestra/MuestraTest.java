@@ -98,7 +98,7 @@ class MuestraTest {
 	void dosExpertosOpinanIgualYNadieMasPuedeVotar() { 
 		muestra.getVerificacion().opinar(muestra,op4, sistema);
 		assertTrue(muestra.getVerificacion().esVerificada());
-		muestra.actualizarResultado();
+		muestra.actualizarResultado(sistema);
 		assertEquals(TipoDeOpinion.VINCHUCASORDIDA, muestra.getResultadoActual());
 		muestra.getVerificacion().opinar(muestra,op3, sistema);
 		assertEquals(2,muestra.getHistorial().size());

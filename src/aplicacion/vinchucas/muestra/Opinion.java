@@ -34,4 +34,8 @@ public class Opinion {
 		return fecha;
 	}
 	
+	public boolean esOpinionDeExperto() {
+		return this.esOpinionDe().esExperto();
+	}
+	
 }

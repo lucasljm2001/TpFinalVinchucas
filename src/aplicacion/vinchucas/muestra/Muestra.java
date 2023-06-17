@@ -45,10 +45,6 @@ public class Muestra {
 			this.verificacion = verificacion;
 		}
 
-		public boolean dosExpertosOpinaronIgual(Opinion opinion) {
-			return this.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).anyMatch(op-> op.getTipo() == opinion.getTipo());
-		}
-		
 		public boolean opino(Usuario us) {
 			return this.getHistorial().stream().anyMatch(o->o.getUsuario() == us);
 		}
@@ -58,8 +54,8 @@ public class Muestra {
 			this.getHistorial().add(opinion);
 		}
 		
-		void actualizarResultado() {
-			this.getVerificacion().actualizarResultado(this);
+		void actualizarResultado(SistemaDeVinchuca sistema) {
+			this.getVerificacion().actualizarResultado(this, sistema);
 		}
 
 		public List<Opinion> getHistorial() { 
@@ -79,9 +75,6 @@ public class Muestra {
 		}
 	
 		public void opinar(Opinion opinion, SistemaDeVinchuca sistema) {
-//			if(this.dosExpertosOpinaronIgual(opinion)) {
-//				sistema.notificarCambioALasZonas(this, Funcionalidad.NUEVAVALIDACION);
-//			}
 			this.getVerificacion().opinar(this, opinion, sistema);
 		}
 
