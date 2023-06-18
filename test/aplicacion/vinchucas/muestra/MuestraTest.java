@@ -63,6 +63,13 @@ class MuestraTest {
 		when(op4.esOpinionDe()).thenReturn(new Experto());
 		when(op5.esOpinionDe()).thenReturn(new Basico());
 		when(op6.esOpinionDe()).thenReturn(new Experto());
+		
+		when(op1.esOpinionDeExperto()).thenReturn(true);
+		when(op2.esOpinionDeExperto()).thenReturn(true);
+		when(op3.esOpinionDeExperto()).thenReturn(false);
+		when(op4.esOpinionDeExperto()).thenReturn(true);
+		when(op5.esOpinionDeExperto()).thenReturn(false);
+		when(op6.esOpinionDeExperto()).thenReturn(true);
 
 		when(margo.getNivel()).thenReturn(new Experto());
 		when(lucas.getNivel()).thenReturn(new Experto());

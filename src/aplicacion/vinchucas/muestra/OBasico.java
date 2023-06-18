@@ -9,11 +9,14 @@ public class OBasico extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
+		// Este if se podria llevar a una clase abstracta y que adentro use un metodo abstracto
+		// que implemente cada clase. REVISARRRR
 		if (opinion.esOpinionDeExperto()) {
 			muestra.setVerificacion(new OExperto());
 			}
 		muestra.agregarHistorial(opinion);
-		this.actualizarResultado(muestra, sistema);
+		// Tiene que ser muestra por que puede ser que haya un cambio de estado
+		muestra.actualizarResultado(sistema);
 	}
 	
 	public TVerificacion getValorVerificacion() {
