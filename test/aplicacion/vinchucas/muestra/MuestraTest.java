@@ -103,6 +103,7 @@ class MuestraTest {
 
 	@Test
 	void dosExpertosOpinanIgualYNadieMasPuedeVotar() { 
+		muestra.votadaPorExperto(op4);
 		muestra.getVerificacion().opinar(muestra,op4, sistema);
 		assertTrue(muestra.getVerificacion().esVerificada());
 		muestra.actualizarResultado(sistema);
@@ -113,6 +114,7 @@ class MuestraTest {
 	
 	@Test
 	void dosExpertosNoOpinanIgual() { 
+		muestra.votadaPorExperto(op1);
 		muestra.getVerificacion().opinar(muestra,op1, sistema);
 		assertEquals(TipoDeOpinion.NODEFINIDO, muestra.getResultadoActual());
 	}
@@ -133,7 +135,11 @@ class MuestraTest {
 	void dosUsuariosBasicoOpinanYLuegoOpinaUnExperto() {
 		muestra2.getVerificacion().opinar(muestra2,op5, sistema);
 		assertEquals(2,muestra2.getHistorial().size());
+		muestra2.votadaPorExperto(op1);
+		muestra2.votadaPorExperto(op1);
+
 		muestra2.getVerificacion().opinar(muestra2, op1, sistema);
+		
 		assertEquals(TipoDeOpinion.CHINCHEFOLIADA, muestra2.getResultadoActual());
 	}
 	
@@ -154,8 +160,13 @@ class MuestraTest {
 
 	@Test
 	void alTenerUnaNuevaVerificacionAvisoAlSistema() {
+		muestra2.votadaPorExperto(op1);
+		muestra2.votadaPorExperto(op1);
 		muestra2.getVerificacion().opinar(muestra2, op1, sistema);
-		muestra2.opinar(op6, sistema);
+		muestra2.votadaPorExperto(op6);
+
+		muestra2.getVerificacion().opinar(muestra2, op6, sistema);
+		
 		verify(sistema).notificarCambioALasZonas(muestra2, Funcionalidad.NUEVAVALIDACION);
 	}
 	

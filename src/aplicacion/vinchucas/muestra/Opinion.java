@@ -37,5 +37,9 @@ public class Opinion {
 	public boolean esOpinionDeExperto() {
 		return this.esOpinionDe().esExperto();
 	}
+
 	
+	public void modificarMuestra(Muestra m) {
+		this.esOpinionDe().modificarMuestra(m, this);
+	}
 }

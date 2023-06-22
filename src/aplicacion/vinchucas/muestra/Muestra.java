@@ -39,7 +39,7 @@ public class Muestra {
 				this.getHistorial().add(opinion);
 				opinion.getUsuario().sumarRevision();
 			}
-		}
+		} 
 
 		void setVerificacion(Verificacion verificacion) {
 			this.verificacion = verificacion;
@@ -88,6 +88,10 @@ public class Muestra {
 		
 		public TVerificacion getValorVerificacion() {
 			return this.getVerificacion().getValorVerificacion();
+		}
+		
+		public void votadaPorExperto(Opinion o) {
+			this.getVerificacion().haSidoOpinadaPorExperto(this, o);
 		}
 		
 }

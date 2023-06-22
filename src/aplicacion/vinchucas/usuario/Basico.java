@@ -24,4 +24,8 @@ public class Basico extends Nivel {
 		return false;
 	} 
 	
+	public void modificarMuestra(Muestra m, Opinion p) {
+		
+	}
+	
 }

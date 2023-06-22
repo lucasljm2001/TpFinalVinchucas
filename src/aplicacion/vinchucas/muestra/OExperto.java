@@ -9,9 +9,7 @@ public class OExperto extends Verificacion {
 
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
-		if (opinion.esOpinionDeExperto()) {
-			muestra.agregarHistorial(opinion);
-		} 
+		opinion.modificarMuestra(muestra);
 		this.actualizarResultado(muestra, sistema);
 	} 
 
@@ -47,6 +45,9 @@ public class OExperto extends Verificacion {
 			return cantTipo;
 	}
 	
+	public void haSidoOpinadaPorExperto(Muestra m , Opinion o) {
+		m.agregarHistorial(o);
+	}
 	
 
 }

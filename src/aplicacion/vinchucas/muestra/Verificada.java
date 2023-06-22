@@ -28,4 +28,6 @@ public class Verificada extends Verificacion {
 		return muestra.getHistorial().get(muestra.getHistorial().size() -1).getTipo();
 	}
 
+	
+	public void haSidoOpinadaPorExperto(Muestra m, Opinion o) {}
 }

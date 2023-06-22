@@ -11,4 +11,7 @@ public class Experto extends Nivel {
 			this.actualizarNivelDeUsuario(usuario,new Basico());
 		}
 	}
+	
+	
+
 }

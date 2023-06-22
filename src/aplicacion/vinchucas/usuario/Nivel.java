@@ -25,4 +25,8 @@ public abstract class Nivel {
 		usuario.setNivel(nivel);
 	}
 	
+	
+	public void  modificarMuestra(Muestra m, Opinion o) {
+		m.votadaPorExperto(o);
+	}
 }
