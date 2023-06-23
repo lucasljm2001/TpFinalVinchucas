@@ -17,8 +17,7 @@ public class Verificada extends Verificacion {
 	public TVerificacion getValorVerificacion() {
 		return TVerificacion.VERIFICADA;
 	}
-
-
+	
 	@Override
 	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema) {
 		muestra.setResultadoActual(this.ultimoTipoDeOpinion(muestra));		
@@ -28,6 +27,7 @@ public class Verificada extends Verificacion {
 		return muestra.getHistorial().get(muestra.getHistorial().size() -1).getTipo();
 	}
 
-	
-	public void haSidoOpinadaPorExperto(Muestra m, Opinion o) {}
+	public void haSidoOpinadaPorExperto(Muestra m, Opinion o) {
+		// no tiene ningun comportamiento porque una vez verificada no se realizan mas opiniones en la muestra.
+	}
 }

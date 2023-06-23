@@ -4,8 +4,7 @@ import aplicacion.vinchucas.usuario.Nivel;
 import aplicacion.vinchucas.usuario.Usuario;
 
 public class Opinion {
-	//La clase opinion actua como una data class, ya que tiene informacion la cual necesita toda junta. 
-	
+
 	private LocalDate fecha;
 	private TipoDeOpinion opinion;
 	private Nivel nivel;
@@ -38,7 +37,6 @@ public class Opinion {
 		return this.esOpinionDe().esExperto();
 	}
 
-	
 	public void modificarMuestra(Muestra m) {
 		this.esOpinionDe().modificarMuestra(m, this);
 	}

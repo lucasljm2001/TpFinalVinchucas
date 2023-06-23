@@ -49,5 +49,4 @@ public class OExperto extends Verificacion {
 		m.agregarHistorial(o);
 	}
 	
-
 }

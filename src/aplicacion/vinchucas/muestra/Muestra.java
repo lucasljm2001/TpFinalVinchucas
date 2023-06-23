@@ -75,6 +75,7 @@ public class Muestra {
 		}
 	
 		public void opinar(Opinion opinion, SistemaDeVinchuca sistema) {
+			// delegamos al state la opinion realizada
 			this.getVerificacion().opinar(this, opinion, sistema);
 		}
 

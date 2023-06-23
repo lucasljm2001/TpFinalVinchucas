@@ -25,7 +25,7 @@ public class Basico extends Nivel {
 	} 
 	
 	public void modificarMuestra(Muestra m, Opinion p) {
-		
+		// no realiza ninguna acción
 	}
 	
 }

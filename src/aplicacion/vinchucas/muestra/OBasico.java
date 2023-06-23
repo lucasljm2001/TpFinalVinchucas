@@ -10,7 +10,6 @@ public class OBasico extends Verificacion {
 	@Override
 	public void opinar(Muestra muestra, Opinion opinion, SistemaDeVinchuca sistema) {
 		opinion.modificarMuestra(muestra); 
-		
 		muestra.agregarHistorial(opinion);
 		// Tiene que ser muestra por que puede ser que haya un cambio de estado
 		muestra.actualizarResultado(sistema);
@@ -19,7 +18,6 @@ public class OBasico extends Verificacion {
 	public TVerificacion getValorVerificacion() {
 		return TVerificacion.OBASICO; 
 	}
-
 
 	@Override
 	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema){ 
@@ -39,11 +37,9 @@ public class OBasico extends Verificacion {
 		muestra.setResultadoActual(opAct);
 	}
 	
-
 	public void haSidoOpinadaPorExperto(Muestra m , Opinion o) {
 		m.setVerificacion(new OExperto());
 	}
-	
 	
 }
   
