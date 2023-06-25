@@ -19,7 +19,7 @@ public class OExperto extends Verificacion {
 	
 	@Override
 	public void actualizarResultado(Muestra muestra, SistemaDeVinchuca sistema) {
-		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDe().esExperto()).toList();
+		List<Opinion> opiniones = muestra.getHistorial().stream().filter(op -> op.esOpinionDeExperto()).toList();
 		Map<Integer, TipoDeOpinion> cantTipo = this.numeroDeOpinionesPorTipo(opiniones);
 		boolean algunaOpinionConDos = cantTipo.keySet().stream().anyMatch(i -> i>1);
 		if(opiniones.size()==1) {
